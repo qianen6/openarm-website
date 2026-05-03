@@ -64,50 +64,57 @@ export default function Navbar() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`fixed top-0 left-0 right-0 z-50 pointer-events-none transition-all duration-500 ${
         scrolled
           ? "bg-canvas/80 backdrop-blur-xl border-b border-line/60"
           : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-20 flex items-center justify-between h-20">
-        <a href="#" className="flex items-center gap-3" aria-label="OpenArm home">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 xl:px-20 flex items-center justify-between gap-4 lg:gap-8 h-20 min-w-0 pointer-events-auto">
+        <a
+          href="#"
+          className="flex items-center gap-2 sm:gap-3 shrink-0"
+          aria-label="OpenArm home"
+        >
           <div
             aria-hidden="true"
             className="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-400 to-violet-500 flex items-center justify-center text-white font-bold text-sm"
           >
             O
           </div>
-          <span className="text-fg font-bold text-xl tracking-tight">
+          <span className="text-fg font-bold text-lg sm:text-xl tracking-tight whitespace-nowrap">
             OpenArm
           </span>
         </a>
 
-        <div className="hidden md:flex items-center gap-10">
+        <nav
+          aria-label="Primary"
+          className="hidden lg:flex items-center justify-center gap-7 xl:gap-10 mx-auto"
+        >
           {t.links.map((link) => (
             <a
               key={link.label}
               href={link.href}
-              className="text-fg-subtle hover:text-fg transition-colors text-base"
+              className="text-fg-subtle hover:text-fg transition-colors text-base whitespace-nowrap shrink-0"
             >
               {link.label}
             </a>
           ))}
-        </div>
+        </nav>
 
-        <div className="hidden md:flex items-center gap-3">
+        <div className="hidden lg:flex items-center gap-3 shrink-0">
           <button
             type="button"
             onClick={toggleLanguage}
             aria-label={t.toggleLabel}
-            className="px-4 py-2 rounded-lg border border-line bg-white/5 text-fg font-semibold text-base hover:border-cyan-400/40 transition-colors"
+            className="px-4 py-2 rounded-lg border border-line bg-white/5 text-fg font-semibold text-base hover:border-cyan-400/40 transition-colors whitespace-nowrap"
           >
             {t.toggleText}
           </button>
           <button
             type="button"
             onClick={openPreorder}
-            className="inline-flex px-6 py-2.5 rounded-lg bg-gradient-to-r from-cyan-400 to-violet-500 text-white font-semibold text-base hover:opacity-90 transition-opacity"
+            className="inline-flex items-center justify-center px-5 py-2.5 rounded-lg bg-gradient-to-r from-cyan-400 to-violet-500 text-white font-semibold text-base hover:opacity-90 transition-opacity whitespace-nowrap"
           >
             {t.contact}
           </button>
@@ -116,7 +123,7 @@ export default function Navbar() {
         <button
           type="button"
           onClick={() => setMenuOpen((v) => !v)}
-          className="md:hidden text-fg p-2 -mr-2"
+          className="lg:hidden text-fg p-2 -mr-2 shrink-0"
           aria-label={menuOpen ? t.menuClose : t.menuOpen}
           aria-expanded={menuOpen}
           aria-controls="mobile-nav-panel"
@@ -146,7 +153,7 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-canvas/95 backdrop-blur-xl border-b border-line/60"
+            className="lg:hidden bg-canvas/95 backdrop-blur-xl border-b border-line/60 pointer-events-auto"
           >
             <div className="px-6 py-6 flex flex-col gap-4">
               {t.links.map((link) => (

@@ -30,7 +30,7 @@ export default function CTASection() {
   return (
     <section
       id="contact"
-      className="relative bg-canvas py-28 overflow-hidden scroll-mt-24"
+      className="relative bg-canvas py-28 overflow-hidden scroll-mt-28"
     >
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
         <div className="absolute top-0 left-0 right-0 bottom-0 bg-gradient-to-b from-canvas-2 via-transparent to-transparent opacity-60" />

@@ -45,6 +45,9 @@ body {
 
 html {
   scroll-behavior: smooth;
+  /* Fixed header is h-20 (5rem); extra inset keeps in-page anchors and
+     scroll-into-view from hiding titles under the sticky bar. */
+  scroll-padding-top: 7rem;
 }
 
 h1,

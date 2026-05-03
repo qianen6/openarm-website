@@ -177,7 +177,7 @@ export default function ProductSection() {
     <section
       ref={sectionRef}
       id="products"
-      className="relative min-h-[420vh] scroll-mt-24 bg-canvas overflow-clip"
+      className="relative min-h-[420vh] scroll-mt-28 bg-canvas overflow-clip"
     >
       <div
         aria-hidden="true"
@@ -209,19 +209,19 @@ export default function ProductSection() {
         </motion.div>
       </div>
 
-      <div className="relative z-10 sticky top-20 min-h-[calc(100vh-80px)] max-w-7xl mx-auto px-6 lg:px-20 py-8 lg:py-12 flex items-center">
-        <div className="grid md:grid-cols-[minmax(0,1.1fr)_minmax(300px,0.8fr)] gap-6 lg:gap-12 w-full items-center">
+      <div className="relative z-10 sticky top-20 min-h-[calc(100vh-80px)] max-h-[calc(100vh-80px)] max-w-7xl mx-auto px-6 lg:px-20 py-6 lg:py-10 flex items-center overflow-hidden">
+        <div className="grid md:grid-cols-[minmax(0,1.1fr)_minmax(300px,0.8fr)] gap-6 lg:gap-12 w-full items-center max-h-full">
           <motion.div
             initial={{ opacity: 0, scale: 0.97 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="relative h-[48vh] min-h-[360px] md:h-[64vh] md:min-h-[520px] rounded-3xl overflow-hidden border border-line bg-canvas-2 shadow-[0_30px_120px_rgba(0,191,255,0.1)]"
+            className="relative h-[clamp(320px,64vh,calc(100vh-7rem))] md:h-[clamp(420px,64vh,calc(100vh-7rem))] rounded-3xl overflow-hidden border border-line bg-canvas-2 shadow-[0_30px_120px_rgba(0,191,255,0.1)]"
           >
             <RobotExplode activeStep={activeStep} />
           </motion.div>
 
-          <div className="relative">
+          <div className="relative max-h-full flex">
             <div
               aria-hidden="true"
               className="absolute -inset-6 rounded-[2rem] bg-gradient-to-br from-cyan-400/10 via-transparent to-violet-500/10 blur-2xl"
@@ -231,7 +231,7 @@ export default function ProductSection() {
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.35 }}
-              className="relative rounded-3xl border border-line bg-canvas-2/85 backdrop-blur-xl p-7 lg:p-8"
+              className="relative rounded-3xl border border-line bg-canvas-2/85 backdrop-blur-xl p-7 lg:p-8 max-h-full overflow-y-auto overscroll-contain w-full"
             >
               <p className="text-cyan-400 font-mono text-sm tracking-[3px] mb-4">
                 {isZh ? currentStep.eyebrowZh : currentStep.eyebrow}
@@ -248,12 +248,12 @@ export default function ProductSection() {
                   <p className="text-cyan-400/90 font-mono text-sm tracking-[3px] px-4 pt-3">
                     {t.dimsHeading}
                   </p>
-                  <div className="relative w-full aspect-[4/3] p-2">
+                  <div className="relative w-full aspect-[16/9] sm:aspect-[3/2] p-2">
                     <Image
                       src="/images/telebot-dims-full-dual.png"
                       alt={t.dimsAlt}
                       fill
-                      sizes="(max-width: 768px) 100vw, (max-width: 1280px) 40vw, 480px"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1280px) 40vw, 420px"
                       className="object-contain"
                     />
                   </div>
@@ -293,7 +293,7 @@ export default function ProductSection() {
                 ))}
               </div>
 
-              <div className="mt-8 flex items-center gap-3">
+              <div className="mt-8 flex items-center gap-3 relative z-10 py-1 -mx-1 px-1">
                 {storySteps.map((step, index) => (
                   <button
                     key={step.eyebrow}

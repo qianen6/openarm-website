@@ -155,7 +155,7 @@ export default function PricingSection() {
   const isZh = language === "zh";
 
   return (
-    <section id="pricing" className="relative bg-canvas py-24 overflow-hidden scroll-mt-24">
+    <section id="pricing" className="relative bg-canvas py-24 overflow-hidden scroll-mt-28">
       <div className="max-w-7xl mx-auto px-6 lg:px-20">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
