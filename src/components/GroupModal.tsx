@@ -140,7 +140,7 @@ export default function GroupModal() {
             <div className="mt-6 flex flex-col items-center">
               <div className="relative w-[220px] h-[220px] rounded-2xl overflow-hidden border border-line bg-white p-3">
                 <Image
-                  src="/images/wechat-qr-placeholder.svg"
+                  src="/images/wechat-qr-group.png"
                   alt={t.qrCaption}
                   fill
                   sizes="220px"
