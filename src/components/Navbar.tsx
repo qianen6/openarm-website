@@ -10,26 +10,32 @@ const copy = {
       { label: "Products", href: "#products" },
       { label: "Technology", href: "#features" },
       { label: "Pricing", href: "#pricing" },
+      { label: "Channels", href: "#channels" },
       { label: "About", href: "#contact" },
     ],
+    channelsCta: "Purchase Channels",
     contact: "Join Pre-order",
     toggleLabel: "Switch to Chinese",
     toggleText: "中文",
     menuOpen: "Open navigation menu",
     menuClose: "Close navigation menu",
+    coBrand: "Co-build",
   },
   zh: {
     links: [
       { label: "产品", href: "#products" },
       { label: "技术", href: "#features" },
       { label: "价格", href: "#pricing" },
+      { label: "购买通道", href: "#channels" },
       { label: "关于", href: "#contact" },
     ],
+    channelsCta: "购买通道",
     contact: "加入预售",
     toggleLabel: "切换到英文",
     toggleText: "EN",
     menuOpen: "打开导航菜单",
     menuClose: "关闭导航菜单",
+    coBrand: "联名共建",
   },
 };
 
@@ -51,10 +57,16 @@ export default function Navbar() {
   useEffect(() => {
     if (typeof document === "undefined") return;
     if (menuOpen) {
-      const original = document.body.style.overflow;
+      const originalOverflow = document.body.style.overflow;
+      const originalPaddingRight = document.body.style.paddingRight;
+      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
       document.body.style.overflow = "hidden";
+      if (scrollbarWidth > 0) {
+        document.body.style.paddingRight = `${scrollbarWidth}px`;
+      }
       return () => {
-        document.body.style.overflow = original;
+        document.body.style.overflow = originalOverflow;
+        document.body.style.paddingRight = originalPaddingRight;
       };
     }
   }, [menuOpen]);
@@ -64,66 +76,67 @@ export default function Navbar() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`fixed top-0 left-0 right-0 z-50 pointer-events-none transition-all duration-500 ${
-        scrolled
-          ? "bg-canvas/80 backdrop-blur-xl border-b border-line/60"
-          : "bg-transparent"
-      }`}
+      className="fixed top-4 left-0 right-0 z-50 px-3 md:px-6"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 xl:px-20 flex items-center justify-between gap-4 lg:gap-8 h-20 min-w-0 pointer-events-auto">
-        <a
-          href="#"
-          className="flex items-center gap-2 sm:gap-3 shrink-0"
-          aria-label="OpenArm home"
-        >
-          <div
-            aria-hidden="true"
-            className="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-400 to-violet-500 flex items-center justify-center text-white font-bold text-sm"
-          >
-            O
-          </div>
-          <span className="text-fg font-bold text-lg sm:text-xl tracking-tight whitespace-nowrap">
-            OpenArm
+      <div
+        className={`max-w-7xl mx-auto px-5 lg:px-7 flex items-center justify-between h-16 rounded-full border transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${
+          scrolled
+            ? "bg-canvas/75 backdrop-blur-2xl border-white/15 shadow-[0_20px_50px_rgba(0,0,0,0.4)]"
+            : "bg-canvas/45 backdrop-blur-xl border-white/10"
+        }`}
+      >
+        <a href="#" className="flex items-center gap-3" aria-label="OpenArm home">
+          <span className="text-fg font-bold text-xl tracking-tight">OpenArm</span>
+          <span className="text-fg-subtle text-sm">×</span>
+          <span className="px-2.5 py-1 rounded-full border border-cyan-300/30 text-cyan-300 text-xs font-mono tracking-[0.1em]">
+            C-OPENARM
           </span>
+          <span className="text-fg-subtle text-sm hidden lg:inline">{t.coBrand}</span>
         </a>
 
-        <nav
-          aria-label="Primary"
-          className="hidden lg:flex items-center justify-center gap-7 xl:gap-10 mx-auto"
-        >
+        <div className="hidden md:flex items-center gap-10">
           {t.links.map((link) => (
             <a
               key={link.label}
               href={link.href}
-              className="text-fg-subtle hover:text-fg transition-colors text-base whitespace-nowrap shrink-0"
+              className="text-fg-subtle hover:text-fg transition-colors text-base"
             >
               {link.label}
             </a>
           ))}
-        </nav>
+        </div>
 
-        <div className="hidden lg:flex items-center gap-3 shrink-0">
+        <div className="hidden md:flex items-center gap-3">
+          <a
+            href="#channels"
+            className="px-4 py-2 rounded-lg border border-line bg-white/5 text-fg font-semibold text-base hover:border-cyan-400/40 transition-colors"
+          >
+            {t.channelsCta}
+          </a>
           <button
             type="button"
             onClick={toggleLanguage}
             aria-label={t.toggleLabel}
-            className="px-4 py-2 rounded-lg border border-line bg-white/5 text-fg font-semibold text-base hover:border-cyan-400/40 transition-colors whitespace-nowrap"
+            className="px-4 py-2 rounded-lg border border-line bg-white/5 text-fg font-semibold text-base hover:border-cyan-400/40 transition-colors"
           >
             {t.toggleText}
           </button>
           <button
             type="button"
             onClick={openPreorder}
-            className="inline-flex items-center justify-center px-5 py-2.5 rounded-lg bg-gradient-to-r from-cyan-400 to-violet-500 text-white font-semibold text-base hover:opacity-90 transition-opacity whitespace-nowrap"
+            className="group inline-flex items-center gap-2 px-5 py-2 rounded-full bg-gradient-to-r from-cyan-400 to-cyan-300 text-canvas font-semibold text-sm transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.98]"
           >
-            {t.contact}
+            <span>{t.contact}</span>
+            <span className="inline-flex w-6 h-6 items-center justify-center rounded-full bg-canvas/15 transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-[1px]">
+              →
+            </span>
           </button>
         </div>
 
         <button
           type="button"
           onClick={() => setMenuOpen((v) => !v)}
-          className="lg:hidden text-fg p-2 -mr-2 shrink-0"
+          className="md:hidden text-fg p-2 -mr-2"
           aria-label={menuOpen ? t.menuClose : t.menuOpen}
           aria-expanded={menuOpen}
           aria-controls="mobile-nav-panel"
@@ -153,7 +166,7 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden bg-canvas/95 backdrop-blur-xl border-b border-line/60 pointer-events-auto"
+            className="md:hidden bg-canvas/95 backdrop-blur-xl border-b border-line/60"
           >
             <div className="px-6 py-6 flex flex-col gap-4">
               {t.links.map((link) => (
@@ -166,6 +179,13 @@ export default function Navbar() {
                   {link.label}
                 </a>
               ))}
+              <a
+                href="#channels"
+                onClick={() => setMenuOpen(false)}
+                className="px-6 py-3 rounded-lg border border-line bg-white/5 text-fg font-semibold text-center"
+              >
+                {t.channelsCta}
+              </a>
               <button
                 type="button"
                 onClick={() => {

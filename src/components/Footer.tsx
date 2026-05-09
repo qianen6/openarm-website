@@ -6,19 +6,19 @@ const footerLinks = {
     {
       heading: "Products",
       items: [
-        { label: "TeleBot Lite", href: "#pricing" },
-        { label: "TeleBot Pro", href: "#pricing" },
-        { label: "TeleBot Enterprise", href: "#pricing" },
-        { label: "Vision Module", href: "#features" },
+        { label: "Tier 1 · RCB + KK", href: "#pricing" },
+        { label: "Tier 2 · Liftable Dual-Battery + KK", href: "#pricing" },
+        { label: "Tier 3 · ZPF + Single Joint", href: "#pricing" },
+        { label: "Purchase Channels", href: "#channels" },
       ],
     },
     {
       heading: "Resources",
       items: [
-        { label: "Documentation", href: "#features" },
-        { label: "API Reference", href: "#features" },
-        { label: "Case Studies", href: "#products" },
-        { label: "Blog", href: "#products" },
+        { label: "OpenArm Docs", href: "https://docs.openarm.dev" },
+        { label: "OpenArm Purchase", href: "https://docs.openarm.dev/purchase" },
+        { label: "OpenArm Software", href: "https://docs.openarm.dev/software/" },
+        { label: "OpenArm Hardware", href: "https://docs.openarm.dev/hardware" },
       ],
     },
     {
@@ -35,19 +35,19 @@ const footerLinks = {
     {
       heading: "产品",
       items: [
-        { label: "TeleBot Lite", href: "#pricing" },
-        { label: "TeleBot Pro", href: "#pricing" },
-        { label: "TeleBot Enterprise", href: "#pricing" },
-        { label: "视觉模块", href: "#features" },
+        { label: "一档 · RCB + KK", href: "#pricing" },
+        { label: "二档 · 可升降双电池 + KK", href: "#pricing" },
+        { label: "三档 · ZPF + 单关节", href: "#pricing" },
+        { label: "购买通道", href: "#channels" },
       ],
     },
     {
       heading: "资源",
       items: [
-        { label: "文档", href: "#features" },
-        { label: "API 参考", href: "#features" },
-        { label: "案例研究", href: "#products" },
-        { label: "博客", href: "#products" },
+        { label: "OpenArm 文档", href: "https://docs.openarm.dev" },
+        { label: "OpenArm 购买页", href: "https://docs.openarm.dev/purchase" },
+        { label: "OpenArm 软件", href: "https://docs.openarm.dev/software/" },
+        { label: "OpenArm 硬件", href: "https://docs.openarm.dev/hardware" },
       ],
     },
     {
@@ -91,13 +91,11 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between gap-12">
           <div className="max-w-xs">
             <div className="flex items-center gap-3 mb-4">
-              <div
-                aria-hidden="true"
-                className="w-7 h-7 rounded-lg bg-gradient-to-br from-cyan-400 to-violet-500 flex items-center justify-center text-white font-bold text-xs"
-              >
-                O
-              </div>
               <span className="text-fg font-bold text-lg">OpenArm</span>
+              <span className="text-fg-subtle">×</span>
+              <span className="px-2.5 py-1 rounded-full border border-cyan-300/30 text-cyan-300 text-xs font-mono tracking-[0.1em]">
+                C-OPENARM
+              </span>
             </div>
             <p className="text-sm text-fg-subtle leading-relaxed">
               {t.description}
@@ -116,12 +114,19 @@ export default function Footer() {
                 <ul className="space-y-3">
                   {group.items.map((link) => (
                     <li key={link.label}>
+                      {(() => {
+                        const isExternal = link.href.startsWith("http");
+                        return (
                       <a
                         href={link.href}
+                        target={isExternal ? "_blank" : undefined}
+                        rel={isExternal ? "noopener noreferrer" : undefined}
                         className="text-sm text-fg-subtle hover:text-fg transition-colors"
                       >
                         {link.label}
                       </a>
+                        );
+                      })()}
                     </li>
                   ))}
                 </ul>

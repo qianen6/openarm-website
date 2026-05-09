@@ -93,7 +93,7 @@ const productJsonLd = {
     "@type": "AggregateOffer",
     lowPrice: "8900",
     highPrice: "52000",
-    priceCurrency: "USD",
+    priceCurrency: "CNY",
     offerCount: "3",
   },
 };

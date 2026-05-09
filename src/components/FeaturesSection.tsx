@@ -157,19 +157,19 @@ const sectionCopy = {
 
 const showcaseImages = [
   {
-    src: "/images/telebot-render-base-80.png",
-    label: "Standard mobile base",
-    labelZh: "标准移动底盘",
+    src: "/images/openarm-user-shot.png",
+    label: "Immersive OpenArm visual",
+    labelZh: "OpenArm 沉浸式视觉图",
   },
   {
-    src: "/images/telebot-render-full-dual.png",
-    label: "Dual-arm + lift platform",
-    labelZh: "双臂升降整机方案",
+    src: "/images/showcase-02.png",
+    label: "Dual-battery with wheel-arm setup",
+    labelZh: "双电池 + 轮臂构型",
   },
   {
-    src: "/images/telebot-render-rcb.png",
-    label: "Research chassis layout",
-    labelZh: "科研向底盘布局",
+    src: "/images/showcase-03.png",
+    label: "ZPF mobility with wheel-arm module",
+    labelZh: "ZPF 机动底盘 + 轮臂模块",
   },
 ] as const;
 
@@ -206,25 +206,18 @@ export default function FeaturesSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.65 }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-5xl mx-auto mb-16"
+          className="relative max-w-6xl mx-auto mb-16"
         >
-          {showcaseImages.map((item) => (
-            <div
-              key={item.src}
-              className="relative rounded-xl border border-line bg-canvas-2 overflow-hidden aspect-[4/3]"
-            >
-              <Image
-                src={item.src}
-                alt={language === "zh" ? item.labelZh : item.label}
-                fill
-                sizes="(max-width: 768px) 100vw, (max-width: 1280px) 33vw, 420px"
-                className="object-contain p-3"
-              />
-              <p className="absolute bottom-0 inset-x-0 py-3 px-3 text-center text-sm md:text-base font-mono tracking-wide text-fg bg-gradient-to-t from-black/85 to-transparent">
-                {language === "zh" ? item.labelZh : item.label}
-              </p>
-            </div>
-          ))}
+          <div className="relative overflow-hidden rounded-[2.5rem]">
+            <Image
+              src={showcaseImages[0].src}
+              alt={language === "zh" ? showcaseImages[0].labelZh : showcaseImages[0].label}
+              width={1200}
+              height={900}
+              sizes="(max-width: 768px) 96vw, (max-width: 1280px) 80vw, 1000px"
+              className="h-auto w-full object-cover rounded-[2.5rem]"
+            />
+          </div>
         </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">

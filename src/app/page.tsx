@@ -4,6 +4,7 @@ import MetricsSection from "@/components/MetricsSection";
 import FeaturesSection from "@/components/FeaturesSection";
 import ProductSection from "@/components/ProductSection";
 import PricingSection from "@/components/PricingSection";
+import ChannelsSection from "@/components/ChannelsSection";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 import GroupModal from "@/components/GroupModal";
@@ -21,6 +22,7 @@ export default function Home() {
           <FeaturesSection />
           <ProductSection />
           <PricingSection />
+          <ChannelsSection />
           <CTASection />
           <Footer />
         </main>

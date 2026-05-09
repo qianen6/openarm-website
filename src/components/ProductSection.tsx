@@ -1,7 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import Image from "next/image";
 import dynamic from "next/dynamic";
 import { useLanguage } from "@/lib/language";
 
@@ -110,8 +109,13 @@ const productCopy = {
     description:
       "Our most advanced collaborative robot. 7 degrees of freedom, 20kg payload capacity, and human-like dexterity powered by our proprietary neural motor control system.",
     stepLabel: "Show story step",
-    dimsHeading: "Outline dimensions (engineering)",
-    dimsAlt: "Four-view engineering dimensions for dual-arm lift configuration",
+    structureFocusHeading: "Structural focus",
+    structureFocus: [
+      "Actuator stack",
+      "CNC load-bearing path",
+      "Protective shell",
+      "Linear guide rail",
+    ],
   },
   zh: {
     eyebrow: "旗舰型号",
@@ -119,8 +123,8 @@ const productCopy = {
     description:
       "我们最先进的协作机器人，具备 7 自由度、20kg 负载能力，以及由自研神经运动控制系统驱动的类人灵巧性。",
     stepLabel: "显示故事步骤",
-    dimsHeading: "外形尺寸（工程示意）",
-    dimsAlt: "双臂升降方案四视图尺寸图",
+    structureFocusHeading: "结构聚焦",
+    structureFocus: ["执行器堆叠", "CNC 承力路径", "防护外壳", "线性导轨系统"],
   },
 };
 
@@ -177,7 +181,7 @@ export default function ProductSection() {
     <section
       ref={sectionRef}
       id="products"
-      className="relative min-h-[420vh] scroll-mt-28 bg-canvas overflow-clip"
+      className="relative min-h-[420vh] scroll-mt-24 bg-canvas overflow-clip"
     >
       <div
         aria-hidden="true"
@@ -209,19 +213,19 @@ export default function ProductSection() {
         </motion.div>
       </div>
 
-      <div className="relative z-10 sticky top-20 min-h-[calc(100vh-80px)] max-h-[calc(100vh-80px)] max-w-7xl mx-auto px-6 lg:px-20 py-6 lg:py-10 flex items-center overflow-hidden">
-        <div className="grid md:grid-cols-[minmax(0,1.1fr)_minmax(300px,0.8fr)] gap-6 lg:gap-12 w-full items-center max-h-full">
+      <div className="relative z-10 sticky top-20 min-h-[calc(100vh-80px)] max-w-7xl mx-auto px-6 lg:px-20 py-8 lg:py-12 flex items-center">
+        <div className="grid md:grid-cols-[minmax(0,1.1fr)_minmax(300px,0.8fr)] gap-6 lg:gap-12 w-full items-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.97 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="relative h-[clamp(320px,64vh,calc(100vh-7rem))] md:h-[clamp(420px,64vh,calc(100vh-7rem))] rounded-3xl overflow-hidden border border-line bg-canvas-2 shadow-[0_30px_120px_rgba(0,191,255,0.1)]"
+            className="relative h-[62vh] min-h-[460px] md:h-[78vh] md:min-h-[680px] rounded-3xl overflow-hidden border border-cyan-300/10 bg-transparent shadow-[0_26px_90px_rgba(0,0,0,0.38)]"
           >
             <RobotExplode activeStep={activeStep} />
           </motion.div>
 
-          <div className="relative max-h-full flex">
+          <div className="relative">
             <div
               aria-hidden="true"
               className="absolute -inset-6 rounded-[2rem] bg-gradient-to-br from-cyan-400/10 via-transparent to-violet-500/10 blur-2xl"
@@ -231,7 +235,7 @@ export default function ProductSection() {
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.35 }}
-              className="relative rounded-3xl border border-line bg-canvas-2/85 backdrop-blur-xl p-7 lg:p-8 max-h-full overflow-y-auto overscroll-contain w-full"
+              className="relative rounded-3xl border border-line bg-canvas-2/85 backdrop-blur-xl p-7 lg:p-8"
             >
               <p className="text-cyan-400 font-mono text-sm tracking-[3px] mb-4">
                 {isZh ? currentStep.eyebrowZh : currentStep.eyebrow}
@@ -244,18 +248,19 @@ export default function ProductSection() {
               </p>
 
               {activeStep === 1 && (
-                <div className="mt-5 rounded-xl border border-line bg-canvas overflow-hidden">
-                  <p className="text-cyan-400/90 font-mono text-sm tracking-[3px] px-4 pt-3">
-                    {t.dimsHeading}
+                <div className="mt-5 rounded-xl border border-cyan-300/20 bg-canvas overflow-hidden">
+                  <p className="text-cyan-400/90 font-mono text-sm tracking-[3px] px-4 pt-3 pb-2">
+                    {t.structureFocusHeading}
                   </p>
-                  <div className="relative w-full aspect-[16/9] sm:aspect-[3/2] p-2">
-                    <Image
-                      src="/images/telebot-dims-full-dual.png"
-                      alt={t.dimsAlt}
-                      fill
-                      sizes="(max-width: 768px) 100vw, (max-width: 1280px) 40vw, 420px"
-                      className="object-contain"
-                    />
+                  <div className="px-4 pb-4 grid grid-cols-2 gap-2">
+                    {t.structureFocus.map((item) => (
+                      <div
+                        key={item}
+                        className="rounded-lg border border-cyan-300/20 bg-canvas-2 px-3 py-2 text-sm text-fg-muted"
+                      >
+                        {item}
+                      </div>
+                    ))}
                   </div>
                 </div>
               )}
@@ -293,7 +298,7 @@ export default function ProductSection() {
                 ))}
               </div>
 
-              <div className="mt-8 flex items-center gap-3 relative z-10 py-1 -mx-1 px-1">
+              <div className="mt-8 flex items-center gap-3">
                 {storySteps.map((step, index) => (
                   <button
                     key={step.eyebrow}

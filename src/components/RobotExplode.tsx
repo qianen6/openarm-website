@@ -4,41 +4,8 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { useGLTF, OrbitControls } from "@react-three/drei";
 import { motion, AnimatePresence } from "framer-motion";
 import * as THREE from "three";
-import { setConsoleFunction } from "three";
 import gsap from "gsap";
 import { useLanguage } from "@/lib/language";
-
-// Three r183 deprecates THREE.Clock in favor of THREE.Timer. @react-three/fiber
-// still constructs a Clock internally, which prints a noisy console warning on
-// every page load. Route Three's logger through a filter so the deprecation
-// chatter is silenced without hiding any other warnings or errors. Runs once.
-declare global {
-  var __openarm_three_console_patched: boolean | undefined;
-}
-if (typeof globalThis !== "undefined" && !globalThis.__openarm_three_console_patched) {
-  globalThis.__openarm_three_console_patched = true;
-  setConsoleFunction((type, message, ...params) => {
-    if (
-      type === "warn" &&
-      typeof message === "string" &&
-      message.includes("Clock") &&
-      message.includes("deprecated")
-    ) {
-      return;
-    }
-    const fn =
-      type === "warn"
-        ? console.warn
-        : type === "error"
-          ? console.error
-          : console.log;
-    fn.call(console, message as unknown as string, ...(params as unknown[]));
-  });
-}
-
-// Slightly lifted scene background so the dark robot reads better while keeping
-// the page-wide canvas color recognizable.
-const SCENE_BG = "#15171F";
 
 type PartType = "motor" | "alu_dark" | "alu_light" | "steel" | "printed" | "rail";
 type Side = "left" | "right" | "center";
@@ -93,12 +60,12 @@ const PART_BY_NAUO: Record<string, PartConfig> = {
 };
 
 const MATERIALS: Record<PartType, { color: string; metalness: number; roughness: number }> = {
-  motor: { color: "#4A4A52", metalness: 0.6, roughness: 0.42 },
-  alu_dark: { color: "#52525C", metalness: 0.6, roughness: 0.42 },
-  alu_light: { color: "#DDE2EA", metalness: 0.78, roughness: 0.3 },
-  steel: { color: "#ECF0F4", metalness: 0.9, roughness: 0.18 },
-  printed: { color: "#7A7E86", metalness: 0.2, roughness: 0.58 },
-  rail: { color: "#CED2D8", metalness: 0.86, roughness: 0.22 },
+  motor: { color: "#3A3A40", metalness: 0.65, roughness: 0.4 },
+  alu_dark: { color: "#42424A", metalness: 0.65, roughness: 0.4 },
+  alu_light: { color: "#D8DCE2", metalness: 0.82, roughness: 0.28 },
+  steel: { color: "#E8ECF2", metalness: 0.92, roughness: 0.16 },
+  printed: { color: "#5A5C62", metalness: 0.15, roughness: 0.72 },
+  rail: { color: "#C8CCD2", metalness: 0.88, roughness: 0.2 },
 };
 
 interface KeptPart {
@@ -131,10 +98,10 @@ const STEP_EXPLODE_PROGRESS = [0, 0.52, 0.5, 0.3] as const;
 const BASE_ROTATION_Z = 0;
 
 const STEP_TRANSFORMS = [
-  { x: 0, y: -0.08, scale: 0.64, rotationOffset: 0 },
-  { x: 0, y: -0.04, scale: 0.56, rotationOffset: 0 },
-  { x: 0.02, y: -0.1, scale: 0.6, rotationOffset: 0.02 },
-  { x: 0, y: -0.06, scale: 0.62, rotationOffset: -0.02 },
+  { x: 0, y: -0.08, scale: 0.74, rotationOffset: 0 },
+  { x: 0, y: -0.04, scale: 0.66, rotationOffset: 0 },
+  { x: 0.02, y: -0.1, scale: 0.7, rotationOffset: 0.02 },
+  { x: 0, y: -0.06, scale: 0.72, rotationOffset: -0.02 },
 ] as const;
 
 const EXPLODE_SIDE_DISTANCE = 2.6;
@@ -383,7 +350,7 @@ function Model({
   // when both arms are visible (right at X≈+0.13, left at X≈-0.13 in scene-local).
   return (
     <group ref={outerGroupRef} rotation={[0, 0, BASE_ROTATION_Z]}>
-      <group position={[0, -1.52, 0.4]} scale={2.0}>
+      <group position={[0, -1.44, 0.4]} scale={2.3}>
         <primitive object={clonedScene} />
       </group>
     </group>
@@ -435,32 +402,30 @@ export default function RobotExplode({ activeStep = 0 }: RobotExplodeProps) {
   const activeCallouts = STORY_CALLOUTS.filter((callout) => callout.step === activeStep);
 
   return (
-    <div
-      ref={containerRef}
-      className="relative w-full h-full"
-      style={{ background: SCENE_BG }}
-    >
+    <div ref={containerRef} className="relative w-full h-full">
       <Canvas
-        camera={{ position: [0, 0.1, 5.4], fov: 34 }}
+        camera={{ position: [0, 0.12, 4.8], fov: 33 }}
         dpr={[1, 1.5]}
-        gl={{ antialias: true, stencil: false, powerPreference: "high-performance" }}
-        style={{ background: SCENE_BG }}
+        gl={{
+          antialias: true,
+          stencil: false,
+          alpha: true,
+          powerPreference: "high-performance",
+        }}
+        style={{ background: "transparent" }}
         onCreated={({ gl, scene }) => {
-          gl.setClearColor(new THREE.Color(SCENE_BG), 1);
-          scene.background = new THREE.Color(SCENE_BG);
+          gl.setClearColor(0x000000, 0);
           gl.toneMapping = THREE.ACESFilmicToneMapping;
-          gl.toneMappingExposure = 1.18;
-          gl.outputColorSpace = THREE.SRGBColorSpace;
+          gl.toneMappingExposure = 0.9;
+          scene.background = null;
         }}
       >
-        <hemisphereLight args={["#F0F4FA", "#3A4055", 1.05]} />
-        <ambientLight intensity={0.78} color="#F2F6FA" />
-        <directionalLight position={[4, 6, 5]} intensity={2.1} color="#FFFFFF" castShadow={false} />
-        <directionalLight position={[-5, 3, -3]} intensity={1.25} color="#C0DAF8" />
-        <directionalLight position={[-6, 2, 4]} intensity={0.7} color="#D6E8FF" />
-        <directionalLight position={[0, -4, 4]} intensity={0.55} color="#FFFFFF" />
-        <directionalLight position={[6, 0, -5]} intensity={0.65} color="#FFE8C8" />
-        <directionalLight position={[0, 5, -4]} intensity={0.55} color="#9DC9FF" />
+        <hemisphereLight args={["#E8EEF9", "#1A1F2A", 0.72]} />
+        <ambientLight intensity={0.44} color="#E8ECF0" />
+        <directionalLight position={[4, 6, 5]} intensity={1.35} color="#FFFFFF" />
+        <directionalLight position={[-5, 3, -3]} intensity={0.62} color="#BFD8FF" />
+        <directionalLight position={[0, -4, 4]} intensity={0.32} color="#FFFFFF" />
+        <directionalLight position={[6, 0, -5]} intensity={0.36} color="#FFE8C8" />
 
         <OrbitControls
           enableZoom={false}
@@ -486,7 +451,7 @@ export default function RobotExplode({ activeStep = 0 }: RobotExplodeProps) {
         className="absolute inset-0 pointer-events-none z-10"
         style={{
           background:
-            "radial-gradient(ellipse at center, transparent 55%, rgba(8,10,14,0.28) 100%)",
+            "radial-gradient(ellipse at center, transparent 42%, rgba(8,10,14,0.3) 100%)",
         }}
       />
 
@@ -518,7 +483,7 @@ export default function RobotExplode({ activeStep = 0 }: RobotExplodeProps) {
         </AnimatePresence>
       </div>
 
-      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#15171F] via-[#15171F]/55 to-transparent pointer-events-none z-15" />
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#0A0A0F] via-[#0A0A0F]/70 to-transparent pointer-events-none z-15" />
 
       <div className="absolute bottom-6 left-1/2 z-40 -translate-x-1/2 rounded-full border border-white/10 bg-[#1A1A24]/80 px-4 py-2 text-xs font-medium text-[#B8BAC6] backdrop-blur-sm">
         {uiCopy[language].step} {activeStep + 1}/4
