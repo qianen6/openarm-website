@@ -1,137 +1,128 @@
 # PR X1 / OpenArm 官网设计手册
 
-版本：1.0
-状态：本文件是官网视觉、文案、组件、动效的唯一设计准则。
-范围：`C:\openarm-website` 本地官网项目。本文档不包含宝塔上传或部署流程。
+版本：1.1
+状态：本文件是 `C:\openarm-website` 当前官网的视觉、文案、组件、媒体和动效准则。
+更新日期：2026-05-29
+部署流程：见 [DEPLOYMENT.md](DEPLOYMENT.md)。本文档只定义网站呈现，不记录服务器凭证。
 
 ## 1. 品牌定位
 
-PR X1 是一台从科研级具身智能平台走向家庭生活场景的个人机器人。
+PR X1 是一台从科研级具身智能平台走向家庭生活场景的个人机器人。当前可信落点是科研实验室、开源生态和真实任务演示；长期愿景是进入家庭，帮助人类处理琐碎家务。
 
 官网必须同时传达三层信息：
 
 1. 技术可信：移动之躯、双臂协作、具身智能、开源生态。
 2. 情感可感：它是未来家庭中的智慧新成员，不只是实验室设备。
-3. 表达克制：除非业务确认，不得暗示已经成熟量产或已经大规模进入家庭。
+3. 表达克制：不得暗示已经成熟量产、已经大规模进入家庭，或已经能独立完成所有家务。
 
-视觉身份固定为：**温暖科技感 / Warm Machine Intelligence**。
+视觉身份固定为：**Warm Machine Intelligence / 温暖科技感**。
 
 这个风格必须满足：
 
 - 有家庭亲近感，但不软萌。
 - 有科研可信度，但不冰冷。
 - 有高级硬件质感，但不炫技。
-- 有开源生态气质，但不做成开发者工具站。
+- 有开源生态气质，但不做成纯开发者工具站。
 
-## 2. 视觉氛围
+## 2. 当前信息架构
 
-### 2.1 氛围定义
+首页顺序必须与当前实现一致：
 
-网站必须像一场真实智能硬件的深色发布现场：机器人正在近未来家庭实验室中完成任务，画面安静、克制、可信，有一点温暖的生活光。
+1. `Navbar`：品牌、语言切换、锚点导航、预售入口。
+2. `HeroSection`：视频首屏、PR X1 家庭愿景、双语 CTA。
+3. `MetricsSection`：全球开源社区与透明度数据。
+4. `FeaturesSection`：AMR x OpenArm 能力叙事与主视觉图。
+5. `ProductSection`：Mobile OpenArm X1 产品图、科研平台叙事与参数。
+6. `PricingSection`：三档预售方案。
+7. `ChannelsSection`：官方购买与关注通道。
+8. `CTASection`：智谷原子 x 开源硬件愿景与咨询入口。
+9. `Footer`：产品、资源、公司链接。
+10. `GroupModal`：QQ 预售群弹窗。
 
-视觉关键词固定为：
+导航标签必须保持一致：
 
-- 浅暖金属空间
-- 石墨质感
-- 暖白文字
-- 青色仪器光
-- 极少量低饱和暖金属边光
-- 真实机器人视频
-- 精密但亲近
-- 家庭愿景但不过度承诺
+| 语言 | 导航项 | 品牌 Badge | 主按钮 |
+| --- | --- | --- | --- |
+| 中文 | 技术、产品、价格、购买通道、关于 | 智谷原子 | 加入预售 |
+| English | Solutions, Products, Pricing, Follow Us, About Us | NVatom | Pre-order |
 
-### 2.2 风格刻度
+当前主要区块标题必须保持下表语义一致：
 
-所有页面设计必须遵守以下刻度：
-
-- 温暖感：6 / 10
-- 科技感：8 / 10
-- 高级克制度：7 / 10
-- 信息密度：5 / 10
-- 动效强度：4 / 10
-- 装饰复杂度：2 / 10
-
-### 2.3 禁止变成的风格
-
-网站不得变成：
-
-- 冷蓝紫机器人实验室。
-- 米色奶油家庭家居官网。
-- 霓虹 AI SaaS 模板。
-- 儿童化、玩具化机器人页面。
-- 纯工业控制台或数据大屏。
+| 区块 | 中文 | English |
+| --- | --- | --- |
+| Metrics | 受到全球顶尖机器人开发者与开源社区信赖 | Trusted by Leading Robotics Developers and Open-Source Communities Worldwide |
+| Features eyebrow | AMR x OpenArm | AMR x OpenArm |
+| Features title | 为OpenArm注入空间自由意志 | Empowering OpenArm with Spatial Autonomy |
+| Product eyebrow | 旗舰型号 | FLAGSHIP EDITION |
+| Product title | Mobile OpenArm X1 | Mobile OpenArm X1 |
+| Pricing eyebrow | 预售价格 | PRE-ORDER PRICING |
+| Pricing title | 智谷原子 X OpenArm X ROS教育基金会 联手共建 | NVatom x OpenArm x ROS Education Foundation |
+| Channels title | 通过官方通道购买与关注 | Purchase and Connect via Official Channels |
+| CTA title | 智谷原子 x 开源硬件 | NVatom x Open Hardware |
+| Footer description | 开源硬件 重新定义具身机器人 | Open Hardware for Embodied Robotics |
 
 ## 3. 色彩系统
 
-所有新增 UI 必须使用下表颜色。不得临时新增主色。如需新增颜色，必须先更新本文档。
+所有新增 UI 必须使用当前 `src/app/globals.css` 中的 token。不得临时新增主色。
 
 | Token | 色值 | 用途 |
 | --- | --- | --- |
-| `--color-canvas` | `#E8E3DA` | 页面主背景，低亮度浅暖金属灰，用于首屏之后的主体页面。 |
-| `--color-canvas-2` | `#D9D3C8` | 交替区块、浅色过渡背景、页脚背景。 |
-| `--color-surface` | `#F6F1E7` | 卡片、面板、弹窗、价格卡底色。 |
+| `--color-canvas` | `#E8E3DA` | 页面主背景，低亮度浅暖金属灰。 |
+| `--color-canvas-2` | `#D9D3C8` | 交替区块、浅色过渡背景、页脚分层。 |
+| `--color-surface` | `#F6F1E7` | 普通卡片、价格卡、弹窗底色。 |
 | `--color-surface-2` | `#D5CEC2` | 抬升层、媒体托盘、浅色区块分层。 |
 | `--color-fg` | `#171A18` | 主标题、核心正文、主要信息。 |
 | `--color-fg-muted` | `#4E5652` | 段落、副标题、说明文本。 |
 | `--color-fg-subtle` | `#74746D` | 元信息、非激活导航、辅助文本。 |
-| `--color-line` | `rgba(23, 26, 24, 0.12)` | 默认 1px 边框、分割线。 |
-| `--color-line-strong` | `rgba(23, 26, 24, 0.22)` | hover 边框、激活描边。 |
+| `--color-line` | `rgba(23, 26, 24, 0.14)` | 默认 1px 边框、分割线。 |
+| `--color-line-strong` | `rgba(23, 26, 24, 0.24)` | hover 边框、激活描边。 |
 | `--color-cyan-400` | `#087F79` | 主要科技强调色、链接、关键参数。 |
 | `--color-cyan-300` | `#0FB7AD` | CTA 高光、图标微光、细节亮色。 |
-| `--color-amber-400` | `#B88D5F` | 极少量木质/家庭温度辅助色。 |
+| `--color-amber-400` | `#B88D5F` | 极少量暖金属辅助色。 |
 | `--color-amber-300` | `#D9BC91` | 浅色界面中的柔和暖金属细节。 |
 
-### 3.1 色彩比例
-
-每个视口的整体视觉比例必须接近：
-
-- 62% 浅暖金属白 / 浅灰背景。
-- 22% 深石墨文字。
-- 10% 黑钛视频与硬件托盘。
-- 5% 青色科技强调。
-- 1% 以下低饱和暖金属边光。
-
-青色是行动色和技术色。暖色只来自浅色背景、真实家居视频与极少量木质/金属细节，不得变成黄色滤镜或抢占 CTA 主色地位。
-
-### 3.2 色彩规则
-
-- 禁止使用纯黑 `#000000` 作为页面背景。
-- 禁止大面积黑底页面；黑色只用于首屏视频遮罩、导航、硬件托盘和必要的高对比技术展示。
-- 禁止大面积使用纯白 `#FFFFFF` 文字；浅色主体主文字使用 `#171A18`。
-- 禁止新增紫色 / 蓝紫色渐变。现有 violet 属于旧风格，下次视觉落地时必须移除。
-- 禁止大面积饱和蓝色背景。
-- 禁止米色、奶油色作为页面大背景。
-- 禁止琥珀色按钮。按钮主色必须是 cyan。
-- 红色只用于错误或危险状态，不得用于品牌区块。
-
-### 3.3 固定渐变
-
-只允许使用以下渐变类型：
+深色模式只用于首屏视频、暗色遮罩和必要技术展示：
 
 ```css
-/* 主按钮 */
-linear-gradient(135deg, #88EEE4 0%, #31C8BE 50%, #0F8C84 100%)
-
-/* 首屏视频左侧阅读遮罩 */
-linear-gradient(90deg, rgba(7, 8, 8, 0.76) 0%, rgba(7, 8, 8, 0.62) 30%, rgba(7, 8, 8, 0.28) 60%, rgba(7, 8, 8, 0.04) 100%)
-
-/* 区块过渡 */
-linear-gradient(180deg, #E8E3DA 0%, #D9D3C8 48%, #E8E3DA 100%)
-
-/* 中性暖金属边缘 */
-linear-gradient(100deg, rgba(244, 240, 232, 0.018), transparent 31%)
-
-/* 青色仪器光 */
-linear-gradient(78deg, transparent 50%, rgba(65, 214, 204, 0.10) 74%, transparent 100%)
+--color-canvas: #070808;
+--color-canvas-2: #0a0d0c;
+--color-surface: #111413;
+--color-surface-2: #181c1a;
+--color-fg: #f4f0e8;
+--color-fg-muted: #beb8ad;
+--color-fg-subtle: #8c8780;
+--color-line: rgba(228, 224, 216, 0.13);
+--color-line-strong: rgba(228, 224, 216, 0.24);
+--color-cyan-400: #41d6cc;
+--color-cyan-300: #8efff0;
 ```
 
-禁止使用其他大面积渐变。
+页面主体背景必须保持当前浅暖金属质感：
+
+```css
+radial-gradient(ellipse at 78% -12%, rgba(8, 127, 121, 0.06), transparent 34rem),
+linear-gradient(180deg, #eee8dd 0%, #e1dacd 100%)
+```
+
+色彩比例目标：
+
+- 62% 浅暖金属灰背景。
+- 22% 深石墨文字。
+- 10% 视频、产品图和硬件托盘中的黑钛质感。
+- 5% cyan 科技强调。
+- 1% 以下低饱和暖金属细节。
+
+禁止模式：
+
+- 大面积纯黑背景。
+- 大面积黄色滤镜或奶油米色。
+- 紫色、蓝紫色、霓虹渐变。
+- 琥珀色主按钮。
+- 纯白文字大面积铺排。
 
 ## 4. 字体系统
 
-### 4.1 字体栈
-
-网站使用现代、理性、略带亲和感的无衬线字体。
+字体栈必须与当前实现一致：
 
 ```css
 --font-display: var(--font-geist-sans), "HarmonyOS Sans SC", "OPPO Sans", "Source Han Sans SC", "Microsoft YaHei", system-ui, sans-serif;
@@ -139,72 +130,56 @@ linear-gradient(78deg, transparent 50%, rgba(65, 214, 204, 0.10) 74%, transparen
 --font-mono: var(--font-geist-mono), "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
 ```
 
-执行规则：
+排版规则：
 
-- 标题和正文使用同一套 sans 字体，保证品牌统一。
-- 等宽字体只用于技术标签、参数、版本号、小型英文标签、代码感内容。
-- 禁止装饰性衬线字体。
-- 禁止把 Inter 作为视觉风格字体。若项目中仍有历史导入，不得让它成为设计主字体。
+- 标题和正文使用同一套 sans 字体。
+- 等宽字体只用于技术标签、参数、版本号、小型英文标签。
+- 中文和正文文本字距为 `0`。
+- 英文大写小标签可使用 `0.14em` 到 `0.18em` 字距。
+- 禁止大标题渐变文字。
 
-### 4.2 字号规范
+当前字号规则：
 
 | 角色 | 桌面 | 平板 | 手机 | 字重 | 行高 |
 | --- | --- | --- | --- | --- | --- |
-| Hero H1 | `52px` | `44px` | `34px` | `720` | `1.06` |
-| Section H2 | `44px` | `38px` | `30px` | `700` | `1.12` |
-| Card H3 | `22px` | `21px` | `20px` | `650` | `1.18` |
-| 大正文 | `19px` | `18px` | `17px` | `450` | `1.65` |
-| 正文 | `16px` | `16px` | `15.5px` | `430` | `1.65` |
-| 标签 / Eyebrow | `12px` | `12px` | `11px` | `650` | `1.2` |
-| 数据数字 | `48px` | `42px` | `34px` | `760` | `1.0` |
-
-### 4.3 排版规则
-
-- 中文和正文文本字距必须为 `0`。
-- 英文大写小标签可使用 `0.14em` 字距。
-- Hero 文案在桌面和手机都必须左对齐。
-- Hero 主标题中英文都不得超过两行。低于 `390px` 宽度时允许三行。
-- 正文行宽必须控制在 `24ch` 到 `62ch`。
-- 禁止使用随视口无限变化的字体大小。必须使用断点或有上下限的 `clamp()`。
-- 禁止大标题使用渐变文字。标题必须使用暖白色。
+| Hero H1 | `52px` | `44px` | `30px` | `720` | `1.06` |
+| Section H2 | `48px` 到 `60px` | `44px` | `30px` 到 `36px` | `700` | `1.1` 到 `1.2` |
+| Card H3 | `20px` 到 `24px` | `20px` | `18px` 到 `20px` | `600` 到 `700` | `1.2` |
+| 大正文 | `19px` 到 `20px` | `18px` | `17px` | `450` | `1.65` |
+| 正文 | `14px` 到 `16px` | `15px` 到 `16px` | `14px` 到 `16px` | `400` 到 `500` | `1.5` 到 `1.7` |
+| Eyebrow | `12px` 到 `16px` | `12px` | `12px` | `600` 到 `700` | `1.2` |
+| 数据数字 | `48px` | `40px` | `36px` | `800` | `1.0` |
 
 ## 5. 布局系统
 
-### 5.1 页面网格
+当前页面网格：
 
 - 内容最大宽度：`1280px`。
 - 桌面左右边距：`80px`。
 - 平板左右边距：`40px`。
 - 手机左右边距：`24px`。
-- 区块上下间距：桌面 `96px`，平板 `80px`，手机 `64px`。
+- 常规区块上下间距：`96px` 到 `112px`。
 - Hero 高度：`min-height: 100dvh`。
 - 锚点滚动偏移：`7rem`。
 
-### 5.2 构图规则
+构图规则：
 
-- 页面采用左对齐、非对称构图。
-- 禁止居中式 Hero。
-- 功能区不得直接使用三个完全相同的横向卡片。若使用三列，必须至少满足一项：
-  - 有一张卡片承担更大的媒体角色。
-  - 卡片前有全宽图像或视频作为信息主视觉。
-  - 网格存在密度、内容类型或视觉权重变化。
-- 页面区块必须是全宽色带 + 内部受控宽度。
+- Hero 必须左对齐，文字块宽度控制在 `560px` 到 `680px`。
+- 首页主体使用浅色全宽区块，不使用整页大黑底。
+- 卡片圆角默认为 `8px`，媒体容器可用 `24px`。
 - 禁止卡片套卡片。
-- 禁止把整个区块做成漂浮大卡片。
+- 禁止将整段页面做成漂浮大卡片。
+- 三列卡片必须有清晰信息层级，不能做成泛 SaaS 卡片墙。
 
-### 5.3 间距刻度
-
-只允许使用以下间距：
+允许间距刻度：
 
 ```text
-4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128
+4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 112 / 128
 ```
-
-媒体裁切或浏览器限制需要特殊数值时，必须在代码附近有明确理由。
 
 ## 6. Hero 首屏系统
 
-Hero 是官网的情绪和技术锚点。
+Hero 是官网的情绪和技术锚点。当前实现位于 `src/components/HeroSection.tsx`。
 
 ### 6.1 当前首屏文案
 
@@ -218,81 +193,107 @@ Hero 是官网的情绪和技术锚点。
 中文副标题：
 
 ```text
-加速具身智能机器人融入家庭，把琐碎留给科技，
-把时间留给爱
+加速具身智能机器人融入家庭，
+把琐碎留给科技，把时间留给爱。
 ```
 
 英文标题：
 
 ```text
 Personal Robot PR X1
-A Smart New Member for Every Family
+A Smart Family Member
 ```
 
 英文副标题：
 
 ```text
-Accelerating embodied AI robots into the home, leaving chores to technology,
-and time to love.
+Accelerating embodied AI robots into the home, leaving chores to technology and time to love.
+```
+
+中文 CTA：
+
+```text
+加入预售群
+查看产品详情
+```
+
+英文 CTA：
+
+```text
+Pre-order Now
+Product Details
 ```
 
 ### 6.2 Hero 媒体
 
 - 主视频：`public/videos/research-box-demo.mp4`。
-- 必须配置 poster：`public/videos/research-box-demo.jpg`。
-- 视频必须静音、自动播放、循环、`playsInline`。
-- 装饰性视频必须设置 `aria-hidden="true"`。
-- 用户开启 reduced motion 时必须显示 poster，不播放视频。
-- 视频裁切必须保留机器人主体，同时给左侧文字留出阅读区域。
+- Poster：`public/videos/research-box-demo.jpg`。
+- 视频属性：`autoPlay`、`loop`、`muted`、`playsInline`、`preload="metadata"`。
+- 装饰性视频设置 `aria-hidden="true"`。
+- 用户开启 `prefers-reduced-motion` 时显示 poster，不播放视频。
+- 当前裁切：`object-cover object-[50%_center]`。
+- 视频色调：`brightness(1.04) contrast(1.04) saturate(1.03)`。
 
 ### 6.3 Hero 遮罩
 
-Hero 必须使用三层遮罩。
+当前首屏有四类覆盖层，必须保持文字可读和视频主体可见。
 
-第一层：左侧阅读遮罩。
-
-```css
-linear-gradient(90deg, rgba(7, 8, 8, 0.76) 0%, rgba(7, 8, 8, 0.62) 30%, rgba(7, 8, 8, 0.28) 60%, rgba(7, 8, 8, 0.04) 100%)
-```
-
-第二层：底部过渡遮罩。
+阅读遮罩：
 
 ```css
-linear-gradient(180deg, rgba(7, 8, 8, 0) 0%, rgba(7, 8, 8, 0.18) 40%, rgba(232, 227, 218, 0.88) 74%, #E8E3DA 88%, #E8E3DA 100%)
+linear-gradient(90deg, rgba(245, 242, 236, 0.12) 0%, rgba(245, 242, 236, 0.07) 34%, rgba(245, 242, 236, 0.02) 62%, transparent 100%),
+linear-gradient(90deg, rgba(7, 8, 8, 0.56) 0%, rgba(7, 8, 8, 0.44) 30%, rgba(7, 8, 8, 0.18) 60%, rgba(7, 8, 8, 0.02) 100%),
+radial-gradient(ellipse at 27% 52%, rgba(7, 8, 8, 0.24), transparent 40%),
+linear-gradient(180deg, rgba(7, 8, 8, 0) 0%, rgba(7, 8, 8, 0) 44%, rgba(7, 8, 8, 0.1) 100%)
 ```
 
-第三层：中性暖金属边缘与青色仪器光。
+底部过渡：
 
 ```css
-linear-gradient(100deg, rgba(244, 240, 232, 0.018), transparent 31%),
-linear-gradient(78deg, transparent 50%, rgba(65, 214, 204, 0.10) 74%, transparent 100%)
+linear-gradient(180deg, rgba(7, 8, 8, 0) 0%, rgba(7, 8, 8, 0.18) 40%, rgba(232, 227, 218, 0.88) 74%, #e8e3da 88%, #e8e3da 100%)
 ```
 
-文字必须在视频最亮帧和最暗帧上都满足 WCAG AA 可读性。
+氛围光：
 
-### 6.4 Hero CTA
+```css
+linear-gradient(100deg, rgba(244, 240, 232, 0.018) 0%, transparent 31%),
+linear-gradient(78deg, transparent 0%, transparent 50%, rgba(65, 214, 204, 0.1) 74%, transparent 100%),
+linear-gradient(180deg, rgba(142, 255, 240, 0.026) 0%, transparent 32%, rgba(7, 8, 8, 0.18) 100%)
+```
 
-- 中文主 CTA 不超过 6 个汉字。
-- 英文主 CTA 不超过 18 个英文字符。
-- 主 CTA 使用 cyan 渐变。
-- 次 CTA 使用透明底 + 暖灰边框，不使用渐变底。
-- CTA 组间距固定为 `16px`。
-- 手机端 CTA 必须纵向排列并占满可用宽度。
+技术网格：
+
+```css
+background-size: 48px 48px;
+mask-image: radial-gradient(circle at 50% 35%, black 35%, transparent 82%);
+```
+
+### 6.4 Hero 可读性
+
+- H1 颜色：`#f4f0e8`。
+- 副标题颜色：`#d1c8bb`。
+- H1 阴影：`0 2px 18px rgba(0,0,0,0.42)`。
+- 文字必须在视频最亮帧和最暗帧上都可读。
+- 手机端 CTA 纵向排列并占满可用宽度。
 
 ## 7. 组件系统
 
 ### 7.1 导航
 
-- 位置：fixed，顶部 `16px`。
+当前实现位于 `src/components/Navbar.tsx`。
+
+- 位置：`fixed`，顶部 `16px`。
 - 高度：`64px`。
+- 外侧横向边距：手机 `12px`，桌面 `24px`。
 - 形状：pill。
-- 初始背景：`rgba(8, 7, 6, 0.48)`。
-- 滚动后背景：`rgba(8, 7, 6, 0.78)`。
-- 边框：`1px solid rgba(228, 224, 216, 0.13)`。
-- 毛玻璃：`backdrop-filter: blur(24px)`，只允许用于导航和弹窗。
-- 滚动后阴影：`0 20px 60px rgba(0, 0, 0, 0.36)`。
-- 导航链接默认使用暖灰，hover 使用暖白。
-- 品牌 badge 使用 cyan 边框和 cyan 文字，不使用琥珀色。
+- 初始背景：`bg-canvas/50 backdrop-blur-xl border-line`。
+- 滚动后背景：`bg-canvas/80 backdrop-blur-2xl border-line`。
+- 滚动后阴影：`0 20px 60px rgba(0,0,0,0.36)`。
+- 链接默认：`text-fg-subtle`。
+- 链接 hover：`text-fg`。
+- 品牌：`OpenArm × 智谷原子` 或 `OpenArm × NVatom`。
+- 品牌 Badge：`border-cyan-300/30 text-cyan-300`。
+- 语言切换：圆角 `8px`，边框 `border-line`，文字 `text-fg`。
 
 ### 7.2 按钮
 
@@ -300,78 +301,77 @@ linear-gradient(78deg, transparent 50%, rgba(65, 214, 204, 0.10) 74%, transparen
 
 - 最小高度：`44px`。
 - 圆角：`999px`。
-- 背景：固定 cyan 主按钮渐变。
-- 文字：`#070808`，字重 `650`。
-- 使用箭头时必须有内嵌圆形 icon 容器。
-- hover 时箭头向右移动 `4px`，向上移动 `1px`。
-- active 时整体缩放到 `0.98`。
-- 禁止外发光霓虹阴影。
+- 背景：
+
+```css
+linear-gradient(135deg, #88eee4 0%, #31c8be 50%, #0f8c84 100%)
+```
+
+- 文字颜色：`#06110f` 或 `text-canvas`。
+- 阴影：
+
+```css
+inset 0 1px 0 rgba(255, 255, 255, 0.32),
+inset 0 -1px 0 rgba(3, 68, 65, 0.36),
+0 0 0 1px rgba(49, 200, 190, 0.18),
+0 18px 42px rgba(17, 122, 115, 0.16)
+```
+
+- 箭头使用内嵌圆形容器，hover 时 `translate-x-1` 和 `-translate-y-[1px]`。
+- active 时缩放到 `0.98`。
 
 次按钮：
 
-- 最小高度：`44px`。
-- 边框：`1px solid rgba(228, 224, 216, 0.18)`。
-- 背景：`rgba(228, 224, 216, 0.04)`。
-- 文字：暖白。
-- hover 边框：`rgba(63, 221, 226, 0.40)`。
+- 圆角：`999px`。
+- 边框：浅色区使用 `border-line`，Hero 上使用 `border-white/15`。
+- 背景：`rgba(228,224,216,0.04)` 或 `bg-white/8`。
+- hover 边框：`cyan-400/40` 或 `cyan-300/50`。
 
 ### 7.3 卡片与面板
 
 普通卡片：
 
 - 圆角：`8px`。
-- 背景：`#17130E`。
-- 边框：`1px solid rgba(228, 224, 216, 0.13)`。
-- 默认无阴影。
-- hover：边框变为 `rgba(63, 221, 226, 0.26)`，上移 `4px`。
+- 背景：`bg-surface` 或 `bg-surface/70`。
+- 边框：`border-line`。
+- 默认无厚重阴影。
+- hover：上移 `4px` 到 `8px`，边框变为 `cyan-400/20` 到 `cyan-400/30`。
 
 媒体卡片：
 
-- 最大圆角：`24px`。
-- 只用于视频、大产品图、沉浸式图片。
-- 必须有黑钛或浅暖金属托盘背景。
+- 圆角：`24px`。
+- 用于首屏视频、特性主视觉、产品图。
+- 可使用浅暖金属托盘或黑钛投影。
 - 不得放在另一个卡片内部。
 
 价格卡：
 
 - 圆角：`8px`。
-- 推荐款使用 cyan 边框，不使用紫色 glow。
-- 价格必须高对比，只有在表格对齐时才使用等宽数字。
+- 推荐款用 cyan 渐变边框，不使用紫色 glow。
+- 价格使用 `text-cyan-400`。
+- 机器人渲染图放在浅色托盘内，保持 `object-contain`。
 
-数据卡：
-
-- 圆角：`8px`。
-- 数字使用 cyan。
-- 标签使用暖灰。
-- 禁止 `99.99%` 这类假精度。
-
-### 7.4 弹窗
+弹窗：
 
 - 遮罩：`rgba(8, 7, 6, 0.72)`。
-- 弹窗底色：`#17130E`。
+- 弹窗底色：`bg-surface`。
 - 圆角：`12px`。
-- 边框：暖灰线条 token。
-- 关闭按钮点击区域：`44px`。
-- 必须支持焦点锁定和 Escape 关闭。
+- 最大宽度：`480px`。
+- 支持 Escape 关闭、背景滚动锁定、初始焦点。
 
-### 7.5 图标
+## 8. 媒体系统
 
-- 线性图标描边：`1.5px` 到 `1.75px`。
-- 默认图标使用暖灰，激活状态使用 cyan。
-- 禁止填充式卡通图标。
-- 禁止 emoji 图标。
-
-## 8. 视频与图片系统
-
-### 8.1 视频角色
+### 8.1 视频
 
 允许使用的视频：
 
-- `research-box-demo.mp4`：首屏、箱子搬运、桌面放置。
-- `research-pickup-demo.mp4`：地面拾取、投放任务。
-- `research-drawer-demo.mp4`：抽屉操作、桌边取物。
-- `research-laundry-demo.mp4`：柔软衣物处理。
-- `research-load-demo.mp4`：双臂负载稳定性。
+- `public/videos/research-box-demo.mp4`：首屏、箱子搬运、桌面放置。
+- `public/videos/research-pickup-demo.mp4`：地面拾取、投放任务。
+- `public/videos/research-drawer-demo.mp4`：抽屉操作、桌边取物。
+- `public/videos/research-laundry-demo.mp4`：柔软衣物处理。
+- `public/videos/research-load-demo.mp4`：双臂负载稳定性。
+
+每个视频必须有对应 `.jpg` poster。
 
 视频含义固定为：
 
@@ -385,61 +385,30 @@ linear-gradient(78deg, transparent 50%, rgba(65, 214, 204, 0.10) 74%, transparen
 - 已经大量家庭部署。
 - 已经能独立完成所有家务。
 
-### 8.2 图片处理
+### 8.2 图片
 
-- 优先使用真实产品图，不用库存图假装产品证据。
+当前关键图片：
+
+- `public/images/openarm-spatial-autonomy-frame.jpg`：Features 主视觉。
+- `public/images/showcase-02.png`：双电池 + 轮臂构型备用展示图。
+- `public/images/showcase-03.png`：ZPF 机动底盘 + 轮臂模块备用展示图。
+- `public/images/homepage.png`：Product 主产品图。
+- `public/images/openarm-rcb-kk-20260512.png`：M-OpenArm Edu 价格卡。
+- `public/images/openarm-dualbattery-kk.png`：M-OpenArm Pro 价格卡。
+- `public/images/openarm-zpf-singlejoint.png`：M-OpenArm Max 价格卡。
+- `public/images/qq-group-qr.jpg`：预售 QQ 群二维码。
+
+图片规则：
+
+- 优先使用真实产品图或真实渲染图，不用库存图假装产品证据。
 - 产品图必须能看清机器人结构。
 - 讲移动能力时不得裁掉底盘。
 - 讲双臂协作时不得只展示单臂局部。
 - 生成图只能用于概念氛围，不能用于产品能力证明。
 
-## 9. 动效系统
+## 9. 文案规范
 
-动效必须像真实硬件一样：沉稳、克制、有重量。
-
-### 9.1 时间
-
-- 标准入场：`600ms`。
-- Hero 文案入场：`600ms`，错峰 `100ms` 到 `200ms`。
-- hover 过渡：`300ms`。
-- 导航过渡：`500ms`。
-- 弹窗入场：`280ms`。
-
-### 9.2 缓动
-
-可见 UI 动效必须使用：
-
-```css
-cubic-bezier(0.32, 0.72, 0, 1)
-```
-
-禁止可见 UI 使用 `linear` 或默认 `ease-in-out`。
-
-### 9.3 允许动画的属性
-
-允许：
-
-- `opacity`
-- `transform`
-- 小范围非滚动装饰元素的 `filter`
-
-禁止：
-
-- 动画 `width`、`height`、`top`、`left`、`margin`、`padding`。
-- 在滚动容器上使用大面积动画 blur。
-- 与首屏视频抢注意力的无限装饰动画。
-
-### 9.4 Reduced Motion
-
-当用户启用 `prefers-reduced-motion: reduce`：
-
-- 首屏视频必须切换为 poster。
-- 滚动入场动效必须变为即时显示。
-- hover 位移必须关闭或明显减弱。
-
-## 10. 文案规范
-
-### 10.1 中文语气
+### 9.1 中文语气
 
 中文文案必须精确、温暖、克制。
 
@@ -465,14 +434,14 @@ cubic-bezier(0.32, 0.72, 0, 1)
 - 重新定义一切
 - 极致性价比
 
-### 10.2 英文语气
+### 9.2 英文语气
 
 英文文案必须清晰、可信、有人情味。
 
 允许使用：
 
 - Personal Robot
-- Smart New Member
+- Smart Family Member
 - Embodied AI
 - Mobile manipulation
 - Open ecosystem
@@ -489,7 +458,7 @@ cubic-bezier(0.32, 0.72, 0, 1)
 - Effortless everything
 - Fully autonomous household labor
 
-### 10.3 产品承诺边界
+### 9.3 产品承诺边界
 
 官网可以表达：
 
@@ -505,30 +474,61 @@ cubic-bezier(0.32, 0.72, 0, 1)
 - PR X1 已经大量进入家庭。
 - PR X1 保证全屋自主。
 
+## 10. 动效系统
+
+动效必须沉稳、克制、有重量。
+
+当前规则：
+
+- Hero 文案入场：`600ms`，延迟 `0.3s / 0.5s / 0.7s`。
+- 常规区块入场：`600ms` 到 `700ms`。
+- 卡片 hover：`250ms` 到 `300ms`，上移不超过 `8px`。
+- 导航状态切换：`500ms`。
+- 弹窗入场：`180ms` 到 `220ms`。
+- 通用可见 UI 缓动优先使用 `cubic-bezier(0.32, 0.72, 0, 1)`。
+
+允许动画属性：
+
+- `opacity`
+- `transform`
+- 小范围非滚动装饰元素的 `filter`
+
+禁止：
+
+- 动画 `width`、`height`、`top`、`left`、`margin`、`padding`。
+- 在滚动容器上使用大面积动画 blur。
+- 与首屏视频抢注意力的无限装饰动画。
+
+Reduced Motion：
+
+- 首屏视频切换为 poster。
+- 滚动入场和计数动画必须立即完成或明显减弱。
+- hover 位移关闭或明显减弱。
+
 ## 11. 响应式规则
 
-### 11.1 断点
+断点：
 
 - 手机：`< 768px`。
 - 平板：`768px` 到 `1023px`。
 - 桌面：`1024px` 及以上。
 
-### 11.2 手机要求
+手机要求：
 
-- 禁止横向滚动。出现横向滚动即设计失败。
+- 禁止横向滚动。
 - Hero 内容保持左对齐。
-- Hero 标题必须保持两行；低于 `390px` 时允许三行。
+- Hero 标题允许两行到三行，但不得被导航遮挡。
 - 所有点击目标不小于 `44px`。
 - 多列布局必须变为单列。
-- 媒体内容只有在帮助理解时才放在密集技术卡片前。
 - 文本不得与视频主体或导航重叠。
+- 移动导航展开时必须锁定背景滚动。
 
-### 11.3 桌面要求
+桌面要求：
 
 - 内容不得超过 `1280px`。
 - Hero 文字块宽度必须在 `560px` 到 `680px`。
 - Hero 右侧必须保留可见机器人动作。
-- 页面节奏必须形成：Hero、数据、能力、产品、价格、渠道、CTA。
+- 页面节奏必须形成：Hero、数据、能力、产品、价格、渠道、CTA、Footer。
 
 ## 12. 可访问性规则
 
@@ -538,7 +538,7 @@ cubic-bezier(0.32, 0.72, 0, 1)
 - 视频不得成为唯一信息来源。
 - 装饰性视频必须 `aria-hidden`。
 - 必须尊重 reduced motion。
-- 视频上文字必须在最亮帧和最暗帧都可读。
+- 弹窗必须支持 Escape 关闭和初始焦点。
 
 ## 13. 实施流程
 
@@ -553,7 +553,7 @@ cubic-bezier(0.32, 0.72, 0, 1)
 7. 运行 `npx eslint src`。
 8. 重大 UI 改动必须运行 `npm run build`。
 
-下一次视觉落地时，必须先更新 `src/app/globals.css` 的 token，让所有组件继承这套温暖科技色彩。
+文案改动必须同步检查中文、英文、导航、CTA 和弹窗，不得只改一种语言。
 
 ## 14. 禁用模式
 
@@ -572,8 +572,6 @@ cubic-bezier(0.32, 0.72, 0, 1)
 - 库存图首屏。
 - 假数据、假精度。
 - UI 中出现 emoji。
-- “Scroll to explore” 等滚动提示。
-- 自定义鼠标光标。
 - 页面里出现解释网站如何使用的说明文字。
 - 未经确认就暗示成熟家庭部署。
 
@@ -583,8 +581,9 @@ cubic-bezier(0.32, 0.72, 0, 1)
 
 - 5 秒内能感到温暖、高级、科技可信。
 - 首屏视频支撑文案，而不是与文案抢注意力。
-- 色彩读起来是浅暖金属白 + 局部黑钛视频/硬件托盘 + 青色仪器光。
-- 文字是暖白，不是纯白或蓝白。
+- 色彩读起来是浅暖金属灰 + 局部黑钛视频/硬件托盘 + cyan 仪器光。
+- Hero 左侧没有过黑死角，也没有黄色雾感。
+- 文字是暖白或石墨黑，不是纯白、蓝白或灰蒙蒙。
 - 新 UI 不出现紫色 / violet。
 - 普通卡片圆角为 `8px`。
 - CTA 是 cyan，不是 amber。
