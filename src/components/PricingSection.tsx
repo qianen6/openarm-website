@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { withBasePath } from "@/lib/site";
 import { useLanguage } from "@/lib/language";
 import { usePreorder } from "@/lib/preorder";
 
@@ -29,122 +30,120 @@ interface Tier {
 
 const tiers: readonly Tier[] = [
   {
-    name: "OpenArm Co-build RCB + KK",
-    nameZh: "OpenArm 联名 RCB + KK 上半身",
-    badge: "TIER 1",
-    badgeZh: "一档",
+    name: "M-OpenArm Edu",
+    nameZh: "M-OpenArm Edu",
+    badge: "Education",
+    badgeZh: "教育基础版",
     preorderPriceUsd: "$9,600",
     listPriceUsd: "$9,600",
     preorderPriceCny: "¥69,000",
     listPriceCny: "¥69,000",
-    target: "Maker teams, universities, and first-time embodied AI labs",
-    targetZh: "创客团队、高校与首次搭建具身智能实验室",
+    target: "Designed for school teaching and geek beginners, it comes with standard open-source courses, serving as a lightweight starting point for embodied AI teaching and research.",
+    targetZh: "高校教学与极客入门，配备标准开源课程，是具身智能教研的轻量化起点",
     features: [
-      "OpenArm collaborative arm stack",
-      "RCB base + KK upper-body structure",
-      "Open docs access and software onboarding",
-      "ROS 2 + Python SDK workflow",
-      "Community support + deployment guidance",
+      "Lidar navigation + OpenArm",
+      "Open documentation",
+      "Open source demos",
+      "ROS + Python support",
+      "Community support and deployment guidance",
     ],
     featuresZh: [
-      "OpenArm 协作机械臂方案",
-      "RCB 底盘 + KK 上半身结构",
+      "激光雷达导航 + OpenArm",
       "开放文档与软件上手支持",
-      "ROS 2 + Python SDK 工作流",
-      "社区支持与部署指导",
+      "开源教学案例支持",
+      "ROS+Python支持",
+      "开源社区支持与部署指导",
     ],
-    cta: "Join Pre-order Group",
-    ctaZh: "加入预售群",
+    cta: "Early Bird Inquiry",
+    ctaZh: "早鸟价预定咨询",
     popular: false,
-    imageSrc: "/images/openarm-rcb-kk.png",
-    imageAlt: "Tier 1 RCB + KK upper-body robot rendering",
-    imageAltZh: "一档 RCB + KK 上半身机器人渲染图",
+    imageSrc: withBasePath("/images/openarm-rcb-kk-20260512.png"),
+    imageAlt: "M-OpenArm Edu robot rendering",
+    imageAltZh: "M-OpenArm Edu 教育基础版机器人渲染图",
   },
   {
-    name: "OpenArm Co-build Liftable Dual-Battery + KK",
-    nameZh: "OpenArm 联名 可升降双电池 + KK",
-    badge: "TIER 2",
-    badgeZh: "二档",
+    name: "M-OpenArm Pro",
+    nameZh: "M-OpenArm Pro",
+    badge: "Professional",
+    badgeZh: "专业科研版",
     preorderPriceUsd: "$13,800",
     listPriceUsd: "$13,800",
     preorderPriceCny: "¥99,000",
     listPriceCny: "¥99,000",
-    target: "Research teams needing adjustable operating height",
-    targetZh: "需要可升降工作高度的科研团队",
+    target: "Designed for algorithm teams and advanced research. High-efficiency algorithm verification. A core productivity tool for laboratory publications.",
+    targetZh: "适用算法团队与进阶研究，侧重算法验证，实验室产出论文的生产力工具。",
     features: [
-      "OpenArm co-branded build with liftable architecture",
-      "Dual-battery platform + KK upper-body assembly",
-      "Expanded endurance for longer sessions",
-      "Software stack aligned with OpenArm docs",
-      "Priority integration support",
+      "Lidar navigation + silent lift platform",
+      "High-frequency data collection",
+      "Embodied AI policy validation",
+      "ACT and Diffusion Policy adaptation",
+      "Software stack aligned with OpenArm and LeRobot",
     ],
     featuresZh: [
-      "OpenArm 联名可升降架构方案",
-      "双电池平台 + KK 上半身组合",
-      "续航能力增强，适合长时段实验",
-      "软件栈与 OpenArm 文档对齐",
-      "优先集成支持",
+      "激光雷达导航 + 静音升降台",
+      "支持高频数据采集",
+      "支持具身智能算法验证",
+      "适配 ACT、Diffusion Policy",
+      "软件栈与OpenArm对齐",
     ],
-    cta: "Reserve a Slot",
-    ctaZh: "预订名额",
+    cta: "Early Bird Inquiry",
+    ctaZh: "早鸟价预定咨询",
     popular: true,
-    discount: "Co-build package: includes OpenArm alignment support",
-    discountZh: "联名套件：含 OpenArm 方案对齐支持",
-    imageSrc: "/images/openarm-dualbattery-kk.png",
-    imageAlt: "Tier 2 liftable dual-battery + KK robot rendering",
-    imageAltZh: "二档 可升降双电池 + KK 机器人渲染图",
+    imageSrc: withBasePath("/images/openarm-dualbattery-kk.png"),
+    imageAlt: "M-OpenArm Pro robot rendering",
+    imageAltZh: "M-OpenArm Pro 专业科研版机器人渲染图",
   },
   {
-    name: "OpenArm Co-build ZPF + Single Joint",
-    nameZh: "OpenArm 联名 ZPF + 单关节",
-    badge: "TIER 3",
-    badgeZh: "三档",
+    name: "M-OpenArm Max",
+    nameZh: "M-OpenArm Max",
+    badge: "Max Ultimate",
+    badgeZh: "至尊具身版",
     preorderPriceUsd: "$17,900",
     listPriceUsd: "$17,900",
     preorderPriceCny: "¥129,000",
     listPriceCny: "¥129,000",
-    target: "Compact deployment scenarios and rapid prototyping teams",
-    targetZh: "紧凑部署场景与快速原型验证团队",
+    target: "Overcoming challenges in omnidirectional mobility and long-horizon, multi-scenario manipulation.",
+    targetZh: "攻克全向移动与转动、长序列（Long-Horizon）全场景操作任务",
     features: [
-      "OpenArm-aligned control stack",
-      "ZPF chassis + single-joint configuration",
-      "Compact footprint for constrained spaces",
-      "Fast setup for pilot and demo scenarios",
-      "Engineering handoff support",
+      "Lidar navigation + bending structure",
+      "360° spatial turning",
+      "360° waist rotation",
+      "Full-Scenario algorithm validation",
+      "VR teleoperation and LeRobot framework support",
     ],
     featuresZh: [
-      "与 OpenArm 对齐的控制方案",
-      "ZPF 底盘 + 单关节配置",
-      "占地紧凑，适合空间受限场景",
-      "快速部署，适合试点与演示",
-      "工程交付支持",
+      "激光雷达导航 + 弯腰结构",
+      "支持360度空间自由转向",
+      "支持360腰部转向",
+      "支持全场景算法验证",
+      "支持 VR 遥操作与LeRobot框架",
     ],
-    cta: "Talk to Engineering",
-    ctaZh: "联系工程团队",
+    cta: "Early Bird Inquiry",
+    ctaZh: "早鸟价预定咨询",
     popular: false,
-    imageSrc: "/images/openarm-zpf-singlejoint.png",
-    imageAlt: "Tier 3 ZPF + single-joint robot rendering",
-    imageAltZh: "三档 ZPF + 单关节机器人渲染图",
+    imageSrc: withBasePath("/images/openarm-zpf-singlejoint.png"),
+    imageAlt: "M-OpenArm Max robot rendering",
+    imageAltZh: "M-OpenArm Max 至尊具身版机器人渲染图",
   },
 ];
 
 const sectionCopy = {
   en: {
     eyebrow: "PRE-ORDER PRICING",
-    title: "OpenArm Co-build · Three Purchase Tiers",
+    title: "NVatom x OpenArm x ROS Education Foundation",
     description:
-      "These robots are co-built with OpenArm. Pick the tier that matches your deployment needs and use the official OpenArm docs for hardware/software references.",
+      "Our embodied AI robots are co-developed in partnership with OpenArm. Users can choose from three tiers of solutions based on their deployment needs and refer to the official documentation to complete the software and hardware integration.",
     popular: "MOST POPULAR",
-    preorderTag: "PRE-ORDER",
+    preorderTag: "PRE-SALE",
     listLabel: "List price",
   },
   zh: {
     eyebrow: "预售价格",
-    title: "OpenArm 联名共建 · 三档采购方案",
+    title: "智谷原子 X OpenArm X ROS教育基金会 联手共建",
     description:
-      "我们的机器人与 OpenArm 联名共建。你可以按部署需求选择三档方案，并参考 OpenArm 官方文档完成软硬件对接。",
+      "我们的具身智能机器人与 OpenArm 联名共建。用户可以按部署需求选择三档方案，并参考官方文档完成软硬件对接。",
     popular: "最受欢迎",
-    preorderTag: "预售价",
+    preorderTag: "预售",
     listLabel: "原价",
   },
 };
@@ -178,26 +177,6 @@ export default function PricingSection() {
           <p className="mt-4 text-fg-subtle max-w-xl mx-auto text-lg leading-relaxed">
             {t.description}
           </p>
-          <p className="mt-4 text-sm text-fg-subtle">
-            {isZh ? "OpenArm 官方链接：" : "Official OpenArm links:"}{" "}
-            <a
-              href="https://docs.openarm.dev"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-cyan-400 hover:text-cyan-300 transition-colors"
-            >
-              docs.openarm.dev
-            </a>{" "}
-            ·{" "}
-            <a
-              href="https://docs.openarm.dev/purchase"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-cyan-400 hover:text-cyan-300 transition-colors"
-            >
-              {isZh ? "购买页" : "Purchase"}
-            </a>
-          </p>
         </motion.div>
 
         <div className="grid md:grid-cols-3 gap-6 items-start">
@@ -209,16 +188,16 @@ export default function PricingSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: i * 0.15 }}
               whileHover={{ y: -8, transition: { duration: 0.3 } }}
-              className={`relative p-8 rounded-xl bg-surface transition-all duration-300 ${
+              className={`relative p-8 rounded-lg bg-surface transition-all duration-300 ${
                 tier.popular
-                  ? "shadow-[0_0_40px_rgba(0,191,255,0.12)]"
+                  ? "shadow-[0_24px_70px_rgba(0,0,0,0.28)]"
                   : "border border-line hover:border-cyan-400/20"
               }`}
               style={
                 tier.popular
                   ? {
                       backgroundImage:
-                        "linear-gradient(#1a1a24, #1a1a24), linear-gradient(180deg, #00bfff, #7b61ff)",
+                        "linear-gradient(var(--color-surface), var(--color-surface)), linear-gradient(180deg, #76efe4, #31c8be)",
                       backgroundOrigin: "border-box",
                       backgroundClip: "padding-box, border-box",
                       border: "2px solid transparent",
@@ -227,7 +206,7 @@ export default function PricingSection() {
               }
             >
               {tier.popular && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full bg-gradient-to-r from-cyan-400 to-violet-500 text-sm font-bold text-white tracking-wide">
+                <div className="primary-cyan-gradient absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full text-sm font-bold text-canvas tracking-wide">
                   {t.popular}
                 </div>
               )}
@@ -245,7 +224,7 @@ export default function PricingSection() {
                 <span
                   className={`text-4xl font-extrabold ${
                     tier.popular
-                      ? "bg-gradient-to-r from-cyan-400 to-violet-500 bg-clip-text text-transparent"
+                      ? "text-cyan-400"
                       : "text-cyan-400"
                   }`}
                 >
@@ -266,14 +245,14 @@ export default function PricingSection() {
               </p>
 
               <div className="mt-5 flex justify-center">
-                <div className="relative flex h-[300px] w-full items-center justify-center rounded-xl bg-canvas/20 p-1 md:h-[340px] md:p-2">
+                <div className="relative flex h-[320px] w-full items-center justify-center rounded-lg bg-canvas/25 p-4 md:h-[340px]">
                   <Image
                     src={tier.imageSrc}
                     alt={isZh ? tier.imageAltZh : tier.imageAlt}
                     width={960}
                     height={720}
                     sizes="(max-width: 768px) 90vw, (max-width: 1280px) 30vw, 420px"
-                    className="h-auto w-auto max-h-[95%] max-w-[96%] rounded-lg object-contain scale-[1.08] drop-shadow-[0_22px_36px_rgba(0,0,0,0.45)]"
+                    className="h-full w-full rounded-lg object-contain drop-shadow-[0_22px_36px_rgba(0,0,0,0.45)]"
                   />
                 </div>
               </div>
@@ -316,8 +295,8 @@ export default function PricingSection() {
                 onClick={openPreorder}
                 className={`mt-6 block w-full text-center py-3 rounded-lg font-semibold transition-all ${
                   tier.popular
-                    ? "bg-gradient-to-r from-cyan-400 to-violet-500 text-white hover:opacity-90"
-                    : "border border-line text-fg hover:border-line-strong"
+                    ? "primary-cyan-gradient text-canvas hover:opacity-95"
+                    : "border border-line bg-[rgba(228,224,216,0.04)] text-fg hover:border-line-strong"
                 }`}
               >
                 {isZh ? tier.ctaZh : tier.cta}

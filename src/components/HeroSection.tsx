@@ -1,30 +1,32 @@
 "use client";
 import { motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
+import { withBasePath } from "@/lib/site";
 import { useLanguage } from "@/lib/language";
 import { usePreorder } from "@/lib/preorder";
 
 const copy = {
   en: {
-    badge: "Pre-order Now · Limited First Batch",
-    headlinePrefix: "Redefining the Future of",
-    headlineHighlight: "Intelligent Robotics",
+    headline: "Personal Robot PR X1\nA Smart Family Member",
     subtitle:
-      "Build, deploy, and scale autonomous robotic systems with cutting-edge AI. From industrial automation to collaborative humanoid partners.",
-    primaryCta: "Join Pre-order Group",
-    secondaryCta: "Explore Products",
-    imageAlt: "OpenArm TeleBot",
+      "Accelerating embodied AI robots into the home, leaving chores to technology and time to love.",
+    primaryCta: "Pre-order Now",
+    secondaryCta: "Product Details",
+    imageAlt: "Mobile OpenArm X1 AMR robot platform",
   },
   zh: {
-    badge: "首批预售 · 名额有限",
-    headlinePrefix: "重新定义",
-    headlineHighlight: "智能机器人未来",
+    headline: "个人机器人 PR X1\n让每一个家庭拥抱智慧新成员",
     subtitle:
-      "用前沿 AI 构建、部署并规模化自主机器人系统，覆盖工业自动化、科研验证和协作式人形伙伴。",
+      "加速具身智能机器人融入家庭，\n把琐碎留给科技，把时间留给爱。",
     primaryCta: "加入预售群",
     secondaryCta: "查看产品详情",
-    imageAlt: "OpenArm 远程操作机器人",
+    imageAlt: "Mobile OpenArm X1 全向移动 AMR 机器人平台",
   },
+};
+
+const heroVideo = {
+  src: withBasePath("/videos/research-box-demo.mp4"),
+  poster: withBasePath("/videos/research-box-demo.jpg"),
 };
 
 export default function HeroSection() {
@@ -43,65 +45,69 @@ export default function HeroSection() {
         };
 
   return (
-    <section className="relative min-h-[100dvh] overflow-hidden bg-canvas pt-28">
-      <div aria-hidden="true" className="mesh-ambient" />
-      <div aria-hidden="true" className="tech-grid" />
-      <div aria-hidden="true" className="scanline-overlay" />
+    <section className="relative min-h-[100dvh] overflow-hidden bg-[#070808] pt-28">
+      {prefersReducedMotion ? (
+        <Image
+          src={heroVideo.poster}
+          alt={t.imageAlt}
+          fill
+          sizes="100vw"
+          className="hero-media-tone absolute inset-0 object-cover object-[50%_center]"
+          priority
+        />
+      ) : (
+        <video
+          aria-hidden="true"
+          className="hero-media-tone absolute inset-0 h-full w-full object-cover object-[50%_center]"
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="metadata"
+          poster={heroVideo.poster}
+        >
+          <source src={heroVideo.src} type="video/mp4" />
+        </video>
+      )}
       <div
         aria-hidden="true"
-        className="absolute top-16 left-[15%] w-[560px] h-[340px] bg-violet-500/10 rounded-full blur-[120px] pointer-events-none"
+        className="hero-readability-shade absolute inset-0"
       />
       <div
         aria-hidden="true"
-        className="absolute bottom-20 right-[8%] w-[600px] h-[300px] bg-cyan-400/8 rounded-full blur-[100px] pointer-events-none"
-      />
-
-      <div
-        aria-hidden="true"
-        className="absolute top-[20%] -left-10 w-[600px] h-[3px] bg-cyan-400/30 rotate-[8deg] blur-[40px] pointer-events-none"
+        className="hero-atmosphere absolute inset-0"
       />
       <div
         aria-hidden="true"
-        className="absolute top-[40%] right-0 w-[800px] h-[4px] bg-violet-500/25 -rotate-[5deg] blur-[50px] pointer-events-none"
+        className="tech-grid absolute inset-0 opacity-60"
       />
       <div
         aria-hidden="true"
-        className="absolute top-[60%] left-[20%] w-[500px] h-[2px] bg-cyan-300/20 rotate-[12deg] blur-[35px] pointer-events-none"
+        className="hero-bottom-fade absolute inset-x-0 bottom-0 h-40 md:h-48"
       />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-20 pb-16">
-        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(420px,0.9fr)] gap-10 items-center min-h-[calc(100dvh-8rem)]">
-          <div>
-            <motion.div
-              {...fadeIn(0.2)}
-              className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-line bg-white/5 mb-8"
-            >
-              <span aria-hidden="true" className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
-              <span className="text-cyan-300 text-sm font-mono tracking-[0.18em] uppercase">
-                {t.badge}
-              </span>
-            </motion.div>
-
+        <div className="flex min-h-[calc(100dvh-8rem)] items-center">
+          <div className="max-w-3xl">
             <motion.h1
-              {...fadeIn(0.4)}
-              className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-fg leading-[1.03] max-w-3xl"
+              {...fadeIn(0.3)}
+              className="max-w-[680px] whitespace-pre-line text-[30px] md:text-[44px] lg:text-[52px] font-[720] tracking-normal text-[#f4f0e8] leading-[1.06] drop-shadow-[0_2px_18px_rgba(0,0,0,0.42)]"
             >
-              {t.headlinePrefix}{" "}
-              <span className="text-cyan-300">{t.headlineHighlight}</span>
+              {t.headline}
             </motion.h1>
 
             <motion.p
-              {...fadeIn(0.6)}
-              className="mt-6 text-lg md:text-xl text-fg-muted max-w-2xl leading-relaxed"
+              {...fadeIn(0.5)}
+              className="mt-5 max-w-xl whitespace-pre-line text-[17px] md:text-[19px] font-[450] text-[#d1c8bb] leading-[1.65]"
             >
               {t.subtitle}
             </motion.p>
 
-            <motion.div {...fadeIn(0.8)} className="mt-10 flex flex-col sm:flex-row gap-4">
+            <motion.div {...fadeIn(0.7)} className="mt-10 flex flex-col sm:flex-row gap-4">
               <button
                 type="button"
                 onClick={open}
-                className="group inline-flex items-center justify-center gap-3 px-7 py-3 rounded-full bg-gradient-to-r from-cyan-400 to-cyan-300 text-canvas text-base font-semibold transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.98]"
+                className="primary-cyan-gradient group inline-flex min-h-11 w-full sm:w-auto items-center justify-center gap-3 rounded-full px-6 py-2.5 text-canvas text-sm font-semibold transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.98]"
               >
                 <span>{t.primaryCta}</span>
                 <span className="w-7 h-7 rounded-full bg-canvas/15 flex items-center justify-center transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-[1px]">
@@ -110,37 +116,12 @@ export default function HeroSection() {
               </button>
               <a
                 href="#products"
-                className="px-8 py-3 rounded-full border border-line bg-white/5 text-fg text-base font-medium hover:border-cyan-400/40 transition-colors text-center"
+                className="inline-flex min-h-11 w-full sm:w-auto items-center justify-center rounded-full border border-white/15 bg-white/8 px-7 py-2.5 text-[#f4f0e8] text-sm font-medium hover:border-cyan-300/50 transition-colors text-center"
               >
                 {t.secondaryCta}
               </a>
             </motion.div>
           </div>
-
-          <motion.div
-            {...(prefersReducedMotion
-              ? { initial: false, animate: { opacity: 1 } }
-              : {
-                  initial: { opacity: 0, y: 36, scale: 0.96 },
-                  animate: { opacity: 1, y: 0, scale: 1 },
-                  transition: { duration: 0.9, delay: 0.7 },
-                })}
-            className="relative"
-          >
-            <div className="rounded-[2rem] p-1.5 bg-white/[0.02] shadow-[0_20px_70px_rgba(0,0,0,0.35)]">
-              <div className="rounded-[1.6rem] overflow-hidden">
-                <Image
-                  src="/images/openarm-dualbattery-kk.png"
-                  alt={t.imageAlt}
-                  width={1080}
-                  height={1080}
-                  sizes="(max-width: 1024px) 100vw, 46vw"
-                  className="w-full h-auto object-contain bg-gradient-to-b from-[#f4f6fb] to-[#dfe4ee] p-4 md:p-8"
-                  priority
-                />
-              </div>
-            </div>
-          </motion.div>
         </div>
       </div>
     </section>

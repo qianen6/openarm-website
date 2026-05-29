@@ -11,6 +11,7 @@ const eslintConfig = defineConfig([
     ".next/**",
     "out/**",
     "build/**",
+    "_remote_roseducation/**",
     "next-env.d.ts",
   ]),
 ]);

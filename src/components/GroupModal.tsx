@@ -2,43 +2,44 @@
 import { useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import { withBasePath } from "@/lib/site";
 import { useLanguage } from "@/lib/language";
 import { usePreorder } from "@/lib/preorder";
 
 const copy = {
   en: {
     eyebrow: "PRE-ORDER",
-    title: "Join the OpenArm pre-order group",
+    title: "Join the Mobile OpenArm X1 pre-order group",
     description:
-      "Scan the QR code with WeChat to enter our pre-order channel. Founding members get an early-bird price, priority shipment, and direct access to the engineering team.",
+      "Scan with QQ to enter the early-bird consultation group. Founding members get priority production access and a direct line to the engineering team.",
     perks: [
       "Early-bird discount (up to 20% off list)",
       "Priority production slot",
-      "Direct chat with the engineering team",
-      "First access to firmware + SDK previews",
+      "Direct access to the engineering team",
+      "Early access to firmware and SDK previews",
     ],
-    qrCaption: "WeChat group · Pre-order channel",
-    fallback: "WeChat unavailable? Email us at",
+    qrCaption: "QQ group · Pre-order channel",
+    fallback: "No QQ access? Email us at",
     closeLabel: "Close",
   },
   zh: {
     eyebrow: "预售通道",
-    title: "扫码加入 OpenArm 预售群",
+    title: "扫码加入 Mobile OpenArm X1 QQ 交流群",
     description:
-      "用微信扫描下方二维码进入预售群。首批成员可享早鸟价、优先生产档期，并可直接与工程团队对接。",
+      "用 QQ 扫描下方二维码进入 Mobile OpenArm X1 早鸟价咨询群。首批成员可优先与工程团队对接。",
     perks: [
       "早鸟价（最高 8 折）",
       "优先生产档期",
       "直连工程团队",
       "固件 / SDK 抢先体验",
     ],
-    qrCaption: "微信群 · 预售通道",
-    fallback: "暂时没有微信？发邮件至",
+    qrCaption: "QQ群 · 预售通道",
+    fallback: "暂时没有 QQ？发邮件至",
     closeLabel: "关闭",
   },
 };
 
-const SUPPORT_EMAIL = "preorder@openarm.example.com";
+const SUPPORT_EMAIL = "contact@nvatom.com";
 
 export default function GroupModal() {
   const { isOpen, close } = usePreorder();
@@ -83,7 +84,7 @@ export default function GroupModal() {
           role="presentation"
         >
           <div
-            className="fixed inset-0 z-0 bg-black/70 backdrop-blur-sm cursor-default"
+            className="fixed inset-0 z-0 bg-[rgba(8,7,6,0.72)] backdrop-blur-sm cursor-default"
             onClick={close}
             aria-hidden="true"
           />
@@ -94,7 +95,7 @@ export default function GroupModal() {
             type="button"
             onClick={close}
             aria-label={t.closeLabel}
-            className="fixed top-4 right-4 sm:top-6 sm:right-6 z-[120] w-11 h-11 rounded-full flex items-center justify-center border border-line bg-surface/95 text-fg-subtle hover:text-fg hover:bg-white/10 shadow-lg backdrop-blur-md transition-colors"
+            className="fixed top-4 right-4 sm:top-6 sm:right-6 z-[120] w-11 h-11 rounded-full flex items-center justify-center border border-line bg-surface/95 text-fg-subtle hover:text-fg hover:bg-[rgba(228,224,216,0.08)] shadow-lg backdrop-blur-md transition-colors"
           >
             <svg
               width="18"
@@ -121,7 +122,7 @@ export default function GroupModal() {
               animate={{ y: 0, opacity: 1, scale: 1 }}
               exit={{ y: 16, opacity: 0, scale: 0.98 }}
               transition={{ duration: 0.22, ease: "easeOut" }}
-              className="relative w-full max-w-[480px] rounded-3xl border border-line bg-surface p-7 sm:p-9 pt-12 sm:pt-14 shadow-[0_30px_120px_rgba(0,0,0,0.45)] max-h-[min(90dvh,calc(100dvh-5rem))] overflow-y-auto"
+              className="relative w-full max-w-[480px] rounded-xl border border-line bg-surface p-7 sm:p-9 pt-12 sm:pt-14 shadow-[0_30px_120px_rgba(0,0,0,0.45)] max-h-[min(90dvh,calc(100dvh-5rem))] overflow-y-auto"
             >
               <p className="text-cyan-400 font-mono text-xs tracking-[3px] uppercase">
                 {t.eyebrow}
@@ -140,13 +141,14 @@ export default function GroupModal() {
               </p>
 
               <div className="mt-6 flex flex-col items-center">
-                <div className="relative w-[220px] h-[220px] rounded-2xl overflow-hidden border border-line bg-white p-3">
+                <div className="relative h-[280px] w-full max-w-[220px] overflow-hidden rounded-xl border border-line bg-white">
                   <Image
-                    src="/images/wechat-qr-group.png"
+                    src={withBasePath("/images/qq-group-qr.jpg")}
                     alt={t.qrCaption}
                     fill
                     sizes="220px"
-                    className="object-contain"
+                    className="object-cover"
+                    priority
                   />
                 </div>
                 <p className="mt-3 text-fg-subtle text-xs font-mono tracking-[2px] uppercase">

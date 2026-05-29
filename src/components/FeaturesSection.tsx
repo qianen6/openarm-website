@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { withBasePath } from "@/lib/site";
 import { useLanguage } from "@/lib/language";
 
 const features = [
@@ -22,10 +23,10 @@ const features = [
         <path d="M9 9h.01M15 9h.01M9.5 13a3.5 3.5 0 0 0 5 0" />
       </svg>
     ),
-    title: "AI-Powered Autonomy",
-    titleZh: "AI 驱动的自主能力",
-    desc: "Self-learning neural networks enable real-time decision making, object recognition, and adaptive behavior in dynamic environments.",
-    descZh: "自学习神经网络支持实时决策、目标识别和动态环境中的自适应行为。",
+    title: "Global Localization and Dynamic Perception",
+    titleZh: "全域定位与动态感知能力",
+    desc: "Advancing from \"teach-and-play\" to \"spatial adaptability\", the LiDAR-guided mobile robot equips the embodied agent with centimeter-level positioning.",
+    descZh: "从“固定示教”进化为“空间自适应”，激光导航底盘赋予了具身智能机器人厘米级的空间定位精度。",
   },
   {
     icon: (
@@ -44,10 +45,10 @@ const features = [
         <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
       </svg>
     ),
-    title: "Precision Engineering",
-    titleZh: "高精度工程设计",
-    desc: "Sub-millimeter accuracy with 6-axis motion control. Every joint calibrated for maximum payload capacity and repeatability.",
-    descZh: "亚毫米级精度与多轴运动控制，每个关节都针对负载能力和重复定位精度完成校准。",
+    title: "Unbounded Operational Radius & Multi-Agent Collaboration",
+    titleZh: "无限作业半径与多点任务协同",
+    desc: "Integrating dual-arm dexterity with LiDAR-based long-range motion planning reducing physical constraints on workspace.",
+    descZh: "双臂的灵巧度与激光雷达的远程路径规划结合，消除了物理作业范围的限制。",
   },
   {
     icon: (
@@ -66,10 +67,10 @@ const features = [
         <path d="M9 12l2 2 4-4" />
       </svg>
     ),
-    title: "Safety-First Design",
-    titleZh: "安全优先设计",
-    desc: "ISO 10218 compliant with force-torque sensing, collision detection, and programmable safety zones for human-robot collaboration.",
-    descZh: "符合 ISO 10218 思路，集成力矩感知、碰撞检测和可编程安全区域，适合人机协作。",
+    title: "Industrial-Grade Sensing & Millisecond-Level Reaction",
+    titleZh: "工业级安全感知与毫秒级决策",
+    desc: "Continuous LiDAR tracking enables real-time identification of dynamic obstacles—including pedestrians and pets—maintaining operational safety at high velocities.",
+    descZh: "激光导航能确保机器人在高速移动中精准识别动态障碍物（如行人或宠物），保障操作安全。",
   },
   {
     icon: (
@@ -89,10 +90,10 @@ const features = [
         <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
       </svg>
     ),
-    title: "Edge Computing & IoT",
-    titleZh: "边缘计算与物联网",
-    desc: "On-device processing with 5G connectivity. Real-time telemetry, fleet management, and cloud-sync for continuous improvement.",
-    descZh: "设备端计算结合 5G 连接，支持实时遥测、机群管理和云端同步优化。",
+    title: "Unified Spatial-Action Co-Training Architecture",
+    titleZh: "“空间-动作”联合训练架构",
+    desc: "The fusion of odometry, LiDAR point clouds, and manipulator joint states delivers high-dimensional, spatio-temporally consistent data to train neural networks for advanced behavior learning.",
+    descZh: "底盘的里程计数据、激光点云与机械臂的关节位姿深度融合，为训练 AI 模型提供了更高维度的时空一致性数据，使机器人能学习到更复杂的行为。",
   },
   {
     icon: (
@@ -112,10 +113,10 @@ const features = [
         <line x1="14" y1="4" x2="10" y2="20" />
       </svg>
     ),
-    title: "Open SDK & APIs",
-    titleZh: "开放 SDK 与 API",
-    desc: "Python, ROS 2, and REST APIs. Build custom workflows, integrate with existing systems, and extend capabilities with our developer toolkit.",
-    descZh: "提供 Python、ROS 2 和 REST API，方便构建自定义流程、集成现有系统并扩展能力。",
+    title: "Deep Openness & Full Open Source",
+    titleZh: "深度开放，全栈开源",
+    desc: "Delivering both comprehensive APIs and low-level driver source code to ensure developers maintain complete, low-level control.",
+    descZh: "不仅提供 API 接口，更提供完整的底层驱动源码，开发者拥有 100% 控制权。",
   },
   {
     icon: (
@@ -133,41 +134,41 @@ const features = [
         <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
       </svg>
     ),
-    title: "Rapid Deployment",
-    titleZh: "快速部署",
-    desc: "From unboxing to production in under 48 hours. Pre-trained models, guided calibration, and plug-and-play hardware integration.",
-    descZh: "从开箱到投入使用最快 48 小时内完成，内置预训练模型、引导式校准和即插即用硬件集成。",
+    title: "Embodied Models and Simulator Integration",
+    titleZh: "集成具身大模型与仿真接口",
+    desc: "Integration with Isaac Gym and MuJoCo simulation frameworks alongside pre-configured VLA (Vision-Language-Action) model pipelines.",
+    descZh: "内置 Isaac Gym / MuJoCo 仿真接口与 VLA（视觉-语言-动作）模型插件。",
   },
 ];
 
 const sectionCopy = {
   en: {
-    eyebrow: "CAPABILITIES",
-    title: "Built for the Next Era of Automation",
+    eyebrow: "AMR x OpenArm",
+    title: "Empowering OpenArm with Spatial Autonomy",
     description:
-      "Our platform combines advanced AI, precision hardware, and seamless integration to deliver autonomous robotic systems.",
+      "Advancing desktop robotic arms into fully autonomous, ubiquitous agents. This effectively bridges the gap between controlled laboratory demonstrations and the execution of complex tasks in real-world environments.",
   },
   zh: {
-    eyebrow: "核心能力",
-    title: "面向下一代自动化而生",
+    eyebrow: "AMR x OpenArm",
+    title: "为OpenArm注入空间自由意志",
     description:
-      "OpenArm 将先进 AI、精密硬件和顺畅集成结合在一起，交付可落地的自主机器人系统。",
+      "将困在桌面上的“工具手臂”进化为拥有自由意志的“全域智能体”，真正实现了从实验室 Demo 到解决真实世界复杂任务的跨越",
   },
 };
 
 const showcaseImages = [
   {
-    src: "/images/openarm-user-shot.png",
-    label: "Immersive OpenArm visual",
-    labelZh: "OpenArm 沉浸式视觉图",
+    src: withBasePath("/images/openarm-spatial-autonomy-frame.jpg"),
+    label: "Mobile OpenArm X1 embodied AI platform visual",
+    labelZh: "Mobile OpenArm X1 具身智能平台视觉图",
   },
   {
-    src: "/images/showcase-02.png",
+    src: withBasePath("/images/showcase-02.png"),
     label: "Dual-battery with wheel-arm setup",
     labelZh: "双电池 + 轮臂构型",
   },
   {
-    src: "/images/showcase-03.png",
+    src: withBasePath("/images/showcase-03.png"),
     label: "ZPF mobility with wheel-arm module",
     labelZh: "ZPF 机动底盘 + 轮臂模块",
   },
@@ -208,15 +209,20 @@ export default function FeaturesSection() {
           transition={{ duration: 0.65 }}
           className="relative max-w-6xl mx-auto mb-16"
         >
-          <div className="relative overflow-hidden rounded-[2.5rem]">
-            <Image
-              src={showcaseImages[0].src}
-              alt={language === "zh" ? showcaseImages[0].labelZh : showcaseImages[0].label}
-              width={1200}
-              height={900}
-              sizes="(max-width: 768px) 96vw, (max-width: 1280px) 80vw, 1000px"
-              className="h-auto w-full object-cover rounded-[2.5rem]"
-            />
+          <div className="features-showcase-shell relative overflow-hidden rounded-3xl border border-line p-2">
+            <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-surface-2 md:aspect-[1600/775]">
+              <Image
+                src={showcaseImages[0].src}
+                alt={language === "zh" ? showcaseImages[0].labelZh : showcaseImages[0].label}
+                fill
+                sizes="(max-width: 768px) 96vw, (max-width: 1280px) 80vw, 1000px"
+                className="features-showcase-image object-cover object-center"
+              />
+              <div
+                aria-hidden="true"
+                className="features-showcase-vignette absolute inset-0"
+              />
+            </div>
           </div>
         </motion.div>
 
@@ -229,9 +235,9 @@ export default function FeaturesSection() {
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6, delay: i * 0.1 }}
               whileHover={{ y: -6, transition: { duration: 0.25 } }}
-              className="group p-8 rounded-xl bg-surface border border-line hover:border-cyan-400/30 transition-all duration-300"
+              className="group p-8 rounded-lg bg-surface border border-line hover:border-cyan-400/30 transition-all duration-300"
             >
-              <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-cyan-400/20 to-violet-500/10 flex items-center justify-center text-cyan-400 mb-5 group-hover:from-cyan-400/30 group-hover:to-violet-500/20 transition-all duration-300">
+              <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-cyan-400/15 to-amber-400/10 flex items-center justify-center text-cyan-400 mb-5 group-hover:from-cyan-400/25 group-hover:to-amber-400/15 transition-all duration-300">
                 {feature.icon}
               </div>
               <h3 className="text-xl font-semibold text-fg mb-3">

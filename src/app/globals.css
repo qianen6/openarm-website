@@ -1,42 +1,43 @@
 @import "tailwindcss";
 
 @theme inline {
-  /* Surface tokens — Lab Black system */
-  --color-canvas: #0a0a0f;
-  --color-canvas-2: #111118;
-  --color-surface: #1a1a24;
-  --color-surface-2: #20202c;
+  /* Surface tokens — Warm Machine Intelligence system */
+  --color-canvas: #e8e3da;
+  --color-canvas-2: #d9d3c8;
+  --color-surface: #f6f1e7;
+  --color-surface-2: #d5cec2;
 
   /* Foreground (text) tokens — 3 levels only */
-  --color-fg: #eeeef0;
-  --color-fg-muted: #b8bac6;
-  --color-fg-subtle: #9090a0;
+  --color-fg: #171a18;
+  --color-fg-muted: #4e5652;
+  --color-fg-subtle: #74746d;
 
   /* Line / border tokens */
-  --color-line: #2a2a38;
-  --color-line-strong: #3a3a48;
+  --color-line: rgba(23, 26, 24, 0.14);
+  --color-line-strong: rgba(23, 26, 24, 0.24);
 
-  /* Override Tailwind palette so existing cyan-400 / violet-500 utilities
-     match the DESIGN.md accent colors instead of v4 defaults. */
-  --color-cyan-400: #00bfff;
-  --color-cyan-300: #38d6ff;
-  --color-violet-500: #7b61ff;
-  --color-violet-400: #9d8aff;
+  /* Accent tokens */
+  --color-cyan-400: #087f79;
+  --color-cyan-300: #0fb7ad;
+  --color-amber-400: #b88d5f;
+  --color-amber-300: #d9bc91;
 
   /* Font tokens (variables come from next/font in layout.tsx) */
-  --font-sans: var(--font-geist-sans), system-ui, sans-serif;
-  --font-display: var(--font-geist-sans), system-ui, sans-serif;
-  --font-mono: var(--font-geist-mono), "SFMono-Regular", Consolas, monospace;
+  --font-sans: var(--font-geist-sans), "HarmonyOS Sans SC", "OPPO Sans", "Source Han Sans SC", "Microsoft YaHei", system-ui, sans-serif;
+  --font-display: var(--font-geist-sans), "HarmonyOS Sans SC", "OPPO Sans", "Source Han Sans SC", "Microsoft YaHei", system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
 }
 
 :root {
   --background: var(--color-canvas);
   --foreground: var(--color-fg);
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 body {
-  background: var(--background);
+  background:
+    radial-gradient(ellipse at 78% -12%, rgba(8, 127, 121, 0.06), transparent 34rem),
+    linear-gradient(180deg, #eee8dd 0%, #e1dacd 100%);
   color: var(--foreground);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
@@ -57,9 +58,103 @@ h4 {
   font-family: var(--font-display);
 }
 
+.primary-cyan-gradient {
+  background: linear-gradient(135deg, #88eee4 0%, #31c8be 50%, #0f8c84 100%);
+  color: #06110f;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.32),
+    inset 0 -1px 0 rgba(3, 68, 65, 0.36),
+    0 0 0 1px rgba(49, 200, 190, 0.18),
+    0 18px 42px rgba(17, 122, 115, 0.16);
+}
+
+.theme-dark {
+  --color-canvas: #070808;
+  --color-canvas-2: #0a0d0c;
+  --color-surface: #111413;
+  --color-surface-2: #181c1a;
+  --color-fg: #f4f0e8;
+  --color-fg-muted: #beb8ad;
+  --color-fg-subtle: #8c8780;
+  --color-line: rgba(228, 224, 216, 0.13);
+  --color-line-strong: rgba(228, 224, 216, 0.24);
+  --color-cyan-400: #41d6cc;
+  --color-cyan-300: #8efff0;
+  --color-amber-400: #8f775e;
+  --color-amber-300: #bdaa92;
+  color-scheme: dark;
+}
+
+.hero-readability-shade {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(245, 242, 236, 0.12) 0%,
+      rgba(245, 242, 236, 0.07) 34%,
+      rgba(245, 242, 236, 0.02) 62%,
+      transparent 100%
+    ),
+    linear-gradient(
+      90deg,
+      rgba(7, 8, 8, 0.56) 0%,
+      rgba(7, 8, 8, 0.44) 30%,
+      rgba(7, 8, 8, 0.18) 60%,
+      rgba(7, 8, 8, 0.02) 100%
+    ),
+    radial-gradient(ellipse at 27% 52%, rgba(7, 8, 8, 0.24), transparent 40%),
+    linear-gradient(180deg, rgba(7, 8, 8, 0) 0%, rgba(7, 8, 8, 0) 44%, rgba(7, 8, 8, 0.1) 100%);
+}
+
+.hero-bottom-fade {
+  background: linear-gradient(180deg, rgba(7, 8, 8, 0) 0%, rgba(7, 8, 8, 0.18) 40%, rgba(232, 227, 218, 0.88) 74%, #e8e3da 88%, #e8e3da 100%);
+}
+
+.hero-atmosphere {
+  background:
+    linear-gradient(100deg, rgba(244, 240, 232, 0.018) 0%, transparent 31%),
+    linear-gradient(78deg, transparent 0%, transparent 50%, rgba(65, 214, 204, 0.1) 74%, transparent 100%),
+    linear-gradient(180deg, rgba(142, 255, 240, 0.026) 0%, transparent 32%, rgba(7, 8, 8, 0.18) 100%);
+}
+
+.hero-media-tone {
+  filter: brightness(1.04) contrast(1.04) saturate(1.03);
+}
+
+.features-showcase-shell {
+  background:
+    linear-gradient(135deg, rgba(248, 244, 234, 0.74), rgba(216, 208, 196, 0.82)),
+    linear-gradient(90deg, rgba(49, 200, 190, 0.1), transparent 38%, rgba(184, 141, 95, 0.08));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.46),
+    inset 0 -1px 0 rgba(23, 26, 24, 0.08),
+    0 26px 80px rgba(74, 64, 50, 0.14);
+}
+
+.features-showcase-image {
+  filter: brightness(0.9) contrast(1.08) saturate(0.94);
+}
+
+.features-showcase-vignette {
+  background:
+    linear-gradient(90deg, rgba(7, 8, 8, 0.16), transparent 28%, rgba(7, 8, 8, 0.08)),
+    linear-gradient(180deg, transparent 58%, rgba(7, 8, 8, 0.18) 100%);
+}
+
+.warm-tech-field {
+  background:
+    linear-gradient(120deg, transparent 0%, rgba(228, 224, 216, 0.024) 28%, transparent 46%),
+    linear-gradient(78deg, transparent 0%, transparent 50%, rgba(65, 214, 204, 0.08) 72%, transparent 100%);
+}
+
+.warm-tech-line-field {
+  background:
+    linear-gradient(90deg, transparent 0%, rgba(65, 214, 204, 0.2) 48%, transparent 100%),
+    linear-gradient(90deg, transparent 0%, rgba(228, 224, 216, 0.045) 34%, transparent 72%);
+}
+
 ::selection {
-  background: rgba(0, 191, 255, 0.3);
-  color: #fff;
+  background: rgba(65, 214, 204, 0.34);
+  color: #070808;
 }
 
 :where(a, button, [role="button"], summary, input, select, textarea):focus-visible {
@@ -110,9 +205,8 @@ h4 {
   inset: -10%;
   pointer-events: none;
   background:
-    radial-gradient(circle at 20% 20%, rgba(0, 191, 255, 0.18), transparent 42%),
-    radial-gradient(circle at 80% 30%, rgba(123, 97, 255, 0.14), transparent 45%),
-    radial-gradient(circle at 50% 80%, rgba(56, 214, 255, 0.12), transparent 48%);
+    linear-gradient(120deg, rgba(228, 224, 216, 0.032), transparent 36%),
+    linear-gradient(68deg, transparent 0%, transparent 52%, rgba(65, 214, 204, 0.08) 78%, transparent 100%);
   animation: mesh-drift 18s ease-in-out infinite;
   will-change: transform;
 }
@@ -122,8 +216,8 @@ h4 {
   inset: 0;
   pointer-events: none;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    linear-gradient(rgba(65, 214, 204, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(228, 224, 216, 0.018) 1px, transparent 1px);
   background-size: 48px 48px;
   mask-image: radial-gradient(circle at 50% 35%, black 35%, transparent 82%);
 }
@@ -143,10 +237,10 @@ h4 {
   height: 22%;
   background: linear-gradient(
     to bottom,
-    rgba(0, 191, 255, 0),
-    rgba(0, 191, 255, 0.12),
-    rgba(123, 97, 255, 0.08),
-    rgba(0, 191, 255, 0)
+    rgba(65, 214, 204, 0),
+    rgba(65, 214, 204, 0.09),
+    rgba(228, 224, 216, 0.025),
+    rgba(65, 214, 204, 0)
   );
   animation: scanline 8.5s linear infinite;
 }

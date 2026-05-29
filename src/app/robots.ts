@@ -1,14 +1,13 @@
 import type { MetadataRoute } from "next";
-
-const SITE_URL = "https://openarm.example.com";
+import { SITE_BASE_PATH, SITE_URL } from "@/lib/site";
 
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
       {
         userAgent: "*",
-        allow: "/",
-        disallow: ["/api/", "/_next/"],
+        allow: SITE_BASE_PATH || "/",
+        disallow: [`${SITE_BASE_PATH}/api/`, `${SITE_BASE_PATH}/_next/`],
       },
     ],
     sitemap: `${SITE_URL}/sitemap.xml`,

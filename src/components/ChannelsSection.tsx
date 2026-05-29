@@ -17,27 +17,15 @@ interface ChannelItem {
 
 const channels: readonly ChannelItem[] = [
   {
-    key: "jd",
-    name: "JD Store",
-    nameZh: "京东店铺",
-    type: "E-commerce",
-    typeZh: "电商通道",
-    handle: "Official account: pending",
-    handleZh: "官方账号：待补充",
-    href: "#",
-    cta: "Add JD Link",
-    ctaZh: "补充京东链接",
-  },
-  {
     key: "taobao",
     name: "Taobao",
     nameZh: "淘宝店铺",
-    type: "E-commerce",
+    type: "Shop",
     typeZh: "电商通道",
-    handle: "Official account: pending",
+    handle: "https://roseducation.taobao.com/",
     handleZh: "官方账号：待补充",
     href: "https://docs.openarm.dev/purchase",
-    cta: "View Purchase Guide",
+    cta: "Visit Store",
     ctaZh: "查看购买指引",
   },
   {
@@ -49,19 +37,19 @@ const channels: readonly ChannelItem[] = [
     handle: "Official account: pending",
     handleZh: "官方账号：待补充",
     href: "#",
-    cta: "Add XHS Account",
+    cta: "Add Xiaohongshu Account",
     ctaZh: "补充小红书账号",
   },
   {
     key: "douyin",
-    name: "Douyin",
+    name: "TikTok",
     nameZh: "抖音",
-    type: "Social channel",
+    type: "Video Channel",
     typeZh: "内容通道",
     handle: "Official account: pending",
     handleZh: "官方账号：待补充",
     href: "#",
-    cta: "Add Douyin Account",
+    cta: "Add TikTok Account",
     ctaZh: "补充抖音账号",
   },
 ];
@@ -69,9 +57,9 @@ const channels: readonly ChannelItem[] = [
 const sectionCopy = {
   en: {
     eyebrow: "OFFICIAL CHANNELS",
-    title: "Buy and Follow Through Official Channels",
+    title: "Purchase and Connect via Official Channels",
     description:
-      "Use the official e-commerce and social channels to purchase robots, track updates, and verify the latest collaboration announcements with OpenArm.",
+      "You can complete your purchase, track product updates, and stay informed on the latest co-development milestones with Mobile OpenArm by connecting with us through our official e-commerce and media channels.",
   },
   zh: {
     eyebrow: "官方通道",
@@ -89,8 +77,8 @@ export default function ChannelsSection() {
   return (
     <section id="channels" className="relative bg-canvas-2 py-28 scroll-mt-24 overflow-hidden">
       <div aria-hidden="true" className="absolute inset-0 opacity-40 pointer-events-none">
-        <div className="absolute top-0 left-[10%] w-[360px] h-[360px] rounded-full bg-cyan-400/12 blur-[120px]" />
-        <div className="absolute bottom-0 right-[8%] w-[420px] h-[420px] rounded-full bg-violet-500/10 blur-[140px]" />
+        <div className="warm-tech-field absolute inset-0" />
+        <div className="warm-tech-line-field absolute left-[10%] top-[18%] h-px w-[72%] rotate-[3deg] opacity-45 blur-[16px]" />
       </div>
       <div className="max-w-7xl mx-auto px-6 lg:px-20">
         <motion.div
@@ -119,12 +107,12 @@ export default function ChannelsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.08 }}
-              className={`rounded-[1.6rem] p-1 bg-white/[0.03] border border-white/10 shadow-[0_18px_45px_rgba(0,0,0,0.26)] ${
+              className={`rounded-lg border border-line bg-surface p-6 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-1 hover:border-cyan-400/30 ${
                 i === 0 ? "md:col-span-2 lg:col-span-1" : ""
               }`}
             >
-              <div className="rounded-[1.2rem] h-full border border-white/10 bg-canvas/75 p-6 flex flex-col">
-                <div className="h-1.5 w-16 rounded-full bg-gradient-to-r from-cyan-300 to-violet-500 mb-5" />
+              <div className="h-full flex flex-col">
+                <div className="h-1.5 w-16 rounded-full bg-cyan-300 mb-5" />
                 <p className="text-xs font-mono tracking-[2px] text-cyan-300 mb-2">
                   {isZh ? channel.typeZh : channel.type}
                 </p>

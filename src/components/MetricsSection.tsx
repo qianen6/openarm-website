@@ -12,7 +12,7 @@ interface AnimatedCounterProps {
 function formatValue(value: number, target: number) {
   // Preserve the same decimal precision as the target so animation reads
   // "60.00 → 99.97" rather than "60 → 99.97".
-  if (Number.isInteger(target)) return Math.round(value).toString();
+  if (Number.isInteger(target)) return Math.round(value).toLocaleString("en-US");
 
   const decimals = Math.min(
     4,
@@ -58,7 +58,7 @@ function AnimatedCounter({ target, suffix = "", duration = 2 }: AnimatedCounterP
   return (
     <span
       ref={ref}
-      className="bg-gradient-to-r from-cyan-400 to-violet-500 bg-clip-text text-transparent"
+      className="text-cyan-400"
     >
       {formatValue(count, target)}
       {suffix}
@@ -68,21 +68,21 @@ function AnimatedCounter({ target, suffix = "", duration = 2 }: AnimatedCounterP
 
 const copy = {
   en: {
-    eyebrow: "Trusted by leading research institutions worldwide",
+    eyebrow: "Trusted by Leading Robotics Developers and Open-Source Communities Worldwide",
     metrics: [
-      { value: 500, suffix: "+", label: "Robots Deployed" },
-      { value: 99.97, suffix: "%", label: "Uptime Reliability" },
-      { value: 24, suffix: "/7", label: "Support Coverage" },
-      { value: 40, suffix: "+", label: "Countries Served" },
+      { value: 1000, suffix: "+", label: "Global Open-source Contributors" },
+      { value: 100, suffix: "%", label: "Full-Stack Transparency" },
+      { value: 24, suffix: "/7", label: "Real-Time Community Response" },
+      { value: 50, suffix: "+", label: "Global Communities Engaged" },
     ],
   },
   zh: {
-    eyebrow: "受到全球领先科研机构信赖",
+    eyebrow: "受到全球顶尖机器人开发者与开源社区信赖",
     metrics: [
-      { value: 500, suffix: "+", label: "已部署机器人" },
-      { value: 99.97, suffix: "%", label: "运行可靠性" },
-      { value: 24, suffix: "/7", label: "技术支持覆盖" },
-      { value: 40, suffix: "+", label: "服务国家与地区" },
+      { value: 1000, suffix: "+", label: "全球开源贡献者" },
+      { value: 100, suffix: "%", label: "软硬件完全代码透明" },
+      { value: 24, suffix: "/7", label: "开源社区实时响应" },
+      { value: 50, suffix: "+", label: "影响国家与地区开源社区" },
     ],
   },
 };
@@ -92,15 +92,7 @@ export default function MetricsSection() {
   const t = copy[language];
 
   return (
-    <section className="relative bg-canvas-2">
-      <div
-        aria-hidden="true"
-        className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"
-      />
-      <div
-        aria-hidden="true"
-        className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"
-      />
+    <section className="relative bg-gradient-to-b from-canvas via-canvas-2 to-canvas">
       <div className="max-w-7xl mx-auto px-6 lg:px-20 py-16">
         <motion.p
           initial={{ opacity: 0 }}
@@ -118,7 +110,7 @@ export default function MetricsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6, delay: i * 0.1 }}
-              className="flex flex-col items-center text-center p-6 rounded-xl bg-surface/50 border border-line/60"
+              className="flex flex-col items-center text-center p-6 rounded-lg bg-surface/70 border border-line"
             >
               <div className="text-4xl md:text-5xl font-extrabold">
                 <AnimatedCounter target={metric.value} suffix={metric.suffix} />

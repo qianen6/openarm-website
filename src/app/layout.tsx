@@ -1,65 +1,55 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
+import { SITE_URL, withBasePath } from "@/lib/site";
 import "./globals.css";
-
-const inter = Inter({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-inter",
-});
-
-const SITE_URL = "https://openarm.example.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "OpenArm — Next-Gen Intelligent Robotics Platform",
-    template: "%s · OpenArm Robotics",
+    default: "Mobile OpenArm X1 — AMR x OpenArm Embodied AI Platform",
+    template: "%s · Mobile OpenArm X1",
   },
   description:
-    "Build, deploy, and scale autonomous robotic systems with cutting-edge AI. From industrial automation to collaborative humanoid partners.",
+    "Mobile OpenArm X1 combines dual-arm manipulation, lidar AMR mobility, open-source software, and embodied AI model workflows for research-grade robotics.",
   keywords: [
     "OpenArm",
-    "robotic arm",
-    "humanoid",
+    "Mobile OpenArm X1",
+    "AMR robot",
+    "lidar navigation",
     "teleoperation",
     "ROS 2",
+    "LeRobot",
     "embodied AI",
     "research robotics",
   ],
-  applicationName: "OpenArm",
-  authors: [{ name: "OpenArm Robotics" }],
+  applicationName: "Mobile OpenArm X1",
+  authors: [{ name: "NVatom Open Source" }],
   alternates: {
     canonical: "/",
-    languages: {
-      en: "/",
-      "zh-CN": "/",
-    },
   },
   openGraph: {
     type: "website",
-    siteName: "OpenArm Robotics",
-    title: "OpenArm — Next-Gen Intelligent Robotics Platform",
+    siteName: "Mobile OpenArm X1",
+    title: "Mobile OpenArm X1 — AMR x OpenArm Embodied AI Platform",
     description:
-      "Build, deploy, and scale autonomous robotic systems with cutting-edge AI.",
+      "A research-grade embodied AI robot platform with dual arms, lidar AMR mobility, open-source software, and simulation workflows.",
     url: SITE_URL,
     images: [
       {
-        url: "/images/robot-hero.jpg",
+        url: withBasePath("/images/openarm-dualbattery-kk.png"),
         width: 1200,
         height: 630,
-        alt: "OpenArm flagship 7-DOF collaborative robotic arm",
+        alt: "Mobile OpenArm X1 embodied AI robot platform",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "OpenArm — Next-Gen Intelligent Robotics Platform",
+    title: "Mobile OpenArm X1 — AMR x OpenArm Embodied AI Platform",
     description:
-      "Build, deploy, and scale autonomous robotic systems with cutting-edge AI.",
-    images: ["/images/robot-hero.jpg"],
+      "A research-grade embodied AI robot platform with dual arms, lidar AMR mobility, open-source software, and simulation workflows.",
+    images: [withBasePath("/images/openarm-dualbattery-kk.png")],
   },
   robots: {
     index: true,
@@ -75,7 +65,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0a0a0f",
+  themeColor: "#e8e3da",
   colorScheme: "dark",
   width: "device-width",
   initialScale: 1,
@@ -84,18 +74,11 @@ export const viewport: Viewport = {
 const productJsonLd = {
   "@context": "https://schema.org",
   "@type": "Product",
-  name: "OpenArm Pro X1",
+  name: "Mobile OpenArm X1",
   description:
-    "7-DOF collaborative research-grade robotic arm with 20 kg payload capacity, ±0.02 mm repeatability, and a 1300 mm reach.",
-  brand: { "@type": "Brand", name: "OpenArm Robotics" },
+    "19-DOF research-grade embodied AI robot platform with dual-arm manipulation, 10 kg payload capacity, ±1 mm repeatability, and a 1300 mm reach.",
+  brand: { "@type": "Brand", name: "NVatom Open Source" },
   category: "Robotics",
-  offers: {
-    "@type": "AggregateOffer",
-    lowPrice: "8900",
-    highPrice: "52000",
-    priceCurrency: "CNY",
-    offerCount: "3",
-  },
 };
 
 export default function RootLayout({
@@ -105,8 +88,8 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
-      className={`${inter.variable} ${GeistSans.variable} ${GeistMono.variable} h-full antialiased`}
+      lang="zh-CN"
+      className={`${GeistSans.variable} ${GeistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-sans">
         {children}

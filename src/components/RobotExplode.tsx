@@ -5,6 +5,7 @@ import { useGLTF, OrbitControls } from "@react-three/drei";
 import { motion, AnimatePresence } from "framer-motion";
 import * as THREE from "three";
 import gsap from "gsap";
+import { withBasePath } from "@/lib/site";
 import { useLanguage } from "@/lib/language";
 
 type PartType = "motor" | "alu_dark" | "alu_light" | "steel" | "printed" | "rail";
@@ -109,38 +110,8 @@ const EXPLODE_FINE_SPREAD = 0.16;
 
 const STORY_CALLOUTS: StoryCallout[] = [
   {
-    id: "actuator",
-    step: 1,
-    x: 64,
-    y: 32,
-    title: "Modular actuator stack",
-    titleZh: "模块化执行器堆叠",
-    body: "Service joints independently instead of replacing the full arm.",
-    bodyZh: "可独立维护关节，无需替换整条机械臂。",
-  },
-  {
-    id: "shell",
-    step: 1,
-    x: 42,
-    y: 48,
-    title: "Serviceable shell",
-    titleZh: "可维护外壳",
-    body: "Printed covers protect wiring while keeping fast iteration possible.",
-    bodyZh: "打印外壳保护线束，同时保留快速迭代空间。",
-  },
-  {
-    id: "load-path",
-    step: 1,
-    x: 70,
-    y: 66,
-    title: "CNC load path",
-    titleZh: "CNC 承力路径",
-    body: "Metal structural parts carry repeatable manipulation loads.",
-    bodyZh: "金属结构件承担稳定可重复的操作载荷。",
-  },
-  {
     id: "gripper",
-    step: 2,
+    step: 1,
     x: 26,
     y: 40,
     title: "Swappable end effector",
@@ -150,7 +121,7 @@ const STORY_CALLOUTS: StoryCallout[] = [
   },
   {
     id: "wrist",
-    step: 2,
+    step: 1,
     x: 48,
     y: 58,
     title: "Teleoperation wrist",
@@ -160,7 +131,7 @@ const STORY_CALLOUTS: StoryCallout[] = [
   },
   {
     id: "sdk",
-    step: 3,
+    step: 2,
     x: 64,
     y: 36,
     title: "ROS 2 + Python SDK",
@@ -170,7 +141,7 @@ const STORY_CALLOUTS: StoryCallout[] = [
   },
   {
     id: "simulation",
-    step: 3,
+    step: 2,
     x: 52,
     y: 62,
     title: "Simulation ready",
@@ -180,15 +151,6 @@ const STORY_CALLOUTS: StoryCallout[] = [
   },
 ];
 
-const uiCopy = {
-  en: {
-    step: "Story step",
-  },
-  zh: {
-    step: "故事步骤",
-  },
-};
-
 function Model({
   explodeProgress,
   activeStep,
@@ -196,7 +158,7 @@ function Model({
   explodeProgress: number;
   activeStep: number;
 }) {
-  const { scene } = useGLTF("/models/robot-model.glb", true);
+  const { scene } = useGLTF(withBasePath("/models/robot-model.glb"), true);
   const outerGroupRef = useRef<THREE.Group>(null);
   const partsRef = useRef<KeptPart[]>([]);
   const initRef = useRef(false);
@@ -464,7 +426,7 @@ export default function RobotExplode({ activeStep = 0 }: RobotExplodeProps) {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -10, scale: 0.97 }}
               transition={{ duration: 0.35, delay: index * 0.08 }}
-              className="absolute max-w-[220px] rounded-2xl border border-white/10 bg-[#0A0A0F]/70 p-4 text-left shadow-[0_18px_60px_rgba(0,0,0,0.35)] backdrop-blur-md"
+              className="absolute max-w-[220px] rounded-xl border border-line bg-surface/80 p-4 text-left shadow-[0_18px_60px_rgba(0,0,0,0.35)] backdrop-blur-md"
               style={{
                 left: `${callout.x}%`,
                 top: `${callout.y}%`,
@@ -472,10 +434,10 @@ export default function RobotExplode({ activeStep = 0 }: RobotExplodeProps) {
               }}
             >
               <div className="mb-2 h-px w-10 bg-cyan-400" />
-              <p className="text-sm font-semibold text-white">
+              <p className="text-sm font-semibold text-fg">
                 {isZh ? callout.titleZh : callout.title}
               </p>
-              <p className="mt-1 text-xs leading-relaxed text-[#B8BAC6]">
+              <p className="mt-1 text-xs leading-relaxed text-fg-muted">
                 {isZh ? callout.bodyZh : callout.body}
               </p>
             </motion.div>
@@ -483,10 +445,10 @@ export default function RobotExplode({ activeStep = 0 }: RobotExplodeProps) {
         </AnimatePresence>
       </div>
 
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#0A0A0F] via-[#0A0A0F]/70 to-transparent pointer-events-none z-15" />
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-canvas via-canvas/70 to-transparent pointer-events-none z-15" />
 
-      <div className="absolute bottom-6 left-1/2 z-40 -translate-x-1/2 rounded-full border border-white/10 bg-[#1A1A24]/80 px-4 py-2 text-xs font-medium text-[#B8BAC6] backdrop-blur-sm">
-        {uiCopy[language].step} {activeStep + 1}/4
+      <div className="absolute bottom-6 left-1/2 z-40 -translate-x-1/2 rounded-full border border-line bg-surface/80 px-4 py-2 text-xs font-medium text-fg-muted backdrop-blur-sm">
+        {activeStep + 1}/3
       </div>
     </div>
   );
