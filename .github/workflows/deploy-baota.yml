@@ -1,0 +1,164 @@
+name: Deploy to BaoTa
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    env:
+      REMOTE_PATH: /www/wwwroot/openarm-website
+      APP_NAME: openarm-website
+      APP_PORT: "3000"
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build standalone app
+        run: npm run build
+        env:
+          NODE_OPTIONS: --max-old-space-size=4096
+
+      - name: Prepare deploy package
+        run: |
+          set -euo pipefail
+
+          if [ ! -f ".next/standalone/server.js" ]; then
+            echo "Missing .next/standalone/server.js"
+            exit 1
+          fi
+
+          rm -rf .next/standalone/.next/static .next/standalone/public
+          mkdir -p .next/standalone/.next
+          cp -R .next/static .next/standalone/.next/static
+          cp -R public .next/standalone/public
+
+          cat > .next/standalone/ecosystem.config.js <<'EOF'
+          module.exports = {
+            apps: [
+              {
+                name: "openarm-website",
+                script: "server.js",
+                cwd: __dirname,
+                instances: 1,
+                exec_mode: "fork",
+                autorestart: true,
+                watch: false,
+                max_memory_restart: "800M",
+                min_uptime: "10s",
+                max_restarts: 10,
+                restart_delay: 4000,
+                kill_timeout: 5000,
+                listen_timeout: 10000,
+                wait_ready: false,
+                env: {
+                  NODE_ENV: "production",
+                  PORT: 3000,
+                  HOSTNAME: "0.0.0.0",
+                  NODE_OPTIONS: "--max-old-space-size=768"
+                },
+                error_file: "./logs/error.log",
+                out_file: "./logs/out.log",
+                merge_logs: true,
+                time: true,
+                log_date_format: "YYYY-MM-DD HH:mm:ss Z"
+              }
+            ]
+          };
+          EOF
+
+          cd .next/standalone
+          zip -qr "$RUNNER_TEMP/openarm-website-build.zip" .
+
+      - name: Configure SSH
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/openarm_deploy_rsa
+          chmod 600 ~/.ssh/openarm_deploy_rsa
+
+      - name: Upload package
+        run: |
+          set -euo pipefail
+          ssh -p "${{ secrets.SSH_PORT }}" -i ~/.ssh/openarm_deploy_rsa \
+            -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null \
+            "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}" \
+            "mkdir -p '$REMOTE_PATH'"
+
+          scp -P "${{ secrets.SSH_PORT }}" -i ~/.ssh/openarm_deploy_rsa \
+            -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null \
+            "$RUNNER_TEMP/openarm-website-build.zip" \
+            "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:$REMOTE_PATH/build.zip"
+
+      - name: Deploy on server
+        run: |
+          set -euo pipefail
+
+          ssh -p "${{ secrets.SSH_PORT }}" -i ~/.ssh/openarm_deploy_rsa \
+            -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null \
+            "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}" \
+            "REMOTE_PATH='$REMOTE_PATH' APP_NAME='$APP_NAME' APP_PORT='$APP_PORT' bash -s" <<'REMOTE_SCRIPT'
+          set -euo pipefail
+          cd "$REMOTE_PATH"
+
+          if ! command -v unzip >/dev/null 2>&1; then
+            apt-get update && apt-get install -y unzip || yum install -y unzip
+          fi
+
+          stamp="$(date +%Y%m%d_%H%M%S)"
+          mkdir -p manual-backups
+
+          if [ -d current ]; then
+            tar -czf "manual-backups/current_before_${stamp}.tar.gz" current
+            echo "Manual backup saved: $REMOTE_PATH/manual-backups/current_before_${stamp}.tar.gz"
+          else
+            echo "No existing current directory to back up."
+          fi
+
+          release_dir="release_${stamp}"
+          rm -rf "$release_dir"
+          mkdir -p "$release_dir"
+          unzip -oq build.zip -d "$release_dir"
+          rm -f build.zip
+
+          if [ -d current ]; then
+            mv current "backup_${stamp}"
+          fi
+          mv "$release_dir" current
+          mkdir -p current/logs
+
+          cd current
+          if pm2 describe "$APP_NAME" >/dev/null 2>&1; then
+            pm2 reload "$APP_NAME" --update-env
+          else
+            pm2 start ecosystem.config.js
+            pm2 save
+          fi
+
+          find "$REMOTE_PATH" -maxdepth 1 -name 'backup_*' -mtime +3 -exec rm -rf {} \; 2>/dev/null || true
+
+          for i in 1 2 3 4 5; do
+            sleep 2
+            if curl -fsS --max-time 5 "http://127.0.0.1:${APP_PORT}" >/dev/null 2>&1; then
+              echo "Health check passed."
+              break
+            fi
+            if [ "$i" = "5" ]; then
+              echo "Health check did not pass in time. Check pm2 logs ${APP_NAME}."
+            fi
+          done
+
+          pm2 status "$APP_NAME"
+          REMOTE_SCRIPT
