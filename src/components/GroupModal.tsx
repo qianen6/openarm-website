@@ -148,7 +148,6 @@ export default function GroupModal() {
                     fill
                     sizes="220px"
                     className="object-cover"
-                    priority
                   />
                 </div>
                 <p className="mt-3 text-fg-subtle text-xs font-mono tracking-[2px] uppercase">

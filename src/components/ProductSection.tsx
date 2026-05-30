@@ -143,7 +143,6 @@ export default function ProductSection() {
               fill
               sizes="(min-width: 1024px) 55vw, 100vw"
               className="object-contain object-center"
-              priority
             />
             <div
               aria-hidden="true"
