@@ -26,9 +26,44 @@ interface Tier {
   imageSrc: string;
   imageAlt: string;
   imageAltZh: string;
+  imageClassName?: string;
 }
 
 const tiers: readonly Tier[] = [
+  {
+    name: "OpenArm Upper Body",
+    nameZh: "OpenArm 上半身",
+    badge: "Upper Body",
+    badgeZh: "上半身套件",
+    preorderPriceUsd: "$3,600",
+    listPriceUsd: "$3,600",
+    preorderPriceCny: "¥26,000",
+    listPriceCny: "¥26,000",
+    target: "An upper-body OpenArm platform for desktop teaching, entry-level embodied AI experiments, and low-cost manipulation data collection.",
+    targetZh:
+      "仅包含 OpenArm 上半身结构，适合桌面教学、入门具身智能实验与低成本操作数据采集。",
+    features: [
+      "Upper-body OpenArm kit",
+      "Dual-arm manipulation platform",
+      "Desktop or lab mounting",
+      "Open documentation and SDK",
+      "Entry-level data collection workflows",
+    ],
+    featuresZh: [
+      "OpenArm 上半身套件",
+      "双臂操作平台",
+      "适合桌面或实验室固定部署",
+      "开放文档与 SDK 支持",
+      "适合入门数据采集流程",
+    ],
+    cta: "Early Bird Inquiry",
+    ctaZh: "早鸟价预定咨询",
+    popular: false,
+    imageSrc: withBasePath("/images/wowrobo-openarm-2-94352134e53e4116971d617a8ddb56fa.png"),
+    imageAlt: "OpenArm upper-body robot rendering",
+    imageAltZh: "OpenArm 上半身机器人渲染图",
+    imageClassName: "scale-[1.35]",
+  },
   {
     name: "M-OpenArm Edu",
     nameZh: "M-OpenArm Edu",
@@ -132,19 +167,23 @@ const sectionCopy = {
     eyebrow: "PRE-ORDER PRICING",
     title: "NVatom x OpenArm x ROS Education Foundation",
     description:
-      "Our embodied AI robots are co-developed in partnership with OpenArm. Users can choose from three tiers of solutions based on their deployment needs and refer to the official documentation to complete the software and hardware integration.",
+      "Our embodied AI robots are co-developed in partnership with OpenArm. Users can choose from four solution tiers based on their deployment needs and refer to the official documentation to complete the software and hardware integration.",
     popular: "MOST POPULAR",
     preorderTag: "PRE-SALE",
     listLabel: "List price",
+    pricePrefix: "",
+    priceSuffix: "and up",
   },
   zh: {
     eyebrow: "预售价格",
     title: "智谷原子 X OpenArm X ROS教育基金会 联手共建",
     description:
-      "我们的具身智能机器人与 OpenArm 联名共建。用户可以按部署需求选择三档方案，并参考官方文档完成软硬件对接。",
+      "我们的具身智能机器人与 OpenArm 联名共建。用户可以按部署需求选择四档方案，并参考官方文档完成软硬件对接。",
     popular: "最受欢迎",
     preorderTag: "预售",
     listLabel: "原价",
+    pricePrefix: "",
+    priceSuffix: "起",
   },
 };
 
@@ -179,7 +218,7 @@ export default function PricingSection() {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-6 items-start">
+        <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6 items-start">
           {tiers.map((tier, i) => (
             <motion.div
               key={tier.name}
@@ -188,7 +227,7 @@ export default function PricingSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: i * 0.15 }}
               whileHover={{ y: -8, transition: { duration: 0.3 } }}
-              className={`relative p-8 rounded-lg bg-surface transition-all duration-300 ${
+              className={`relative p-6 lg:p-7 rounded-lg bg-surface transition-all duration-300 ${
                 tier.popular
                   ? "shadow-[0_24px_70px_rgba(0,0,0,0.28)]"
                   : "border border-line hover:border-cyan-400/20"
@@ -211,18 +250,23 @@ export default function PricingSection() {
                 </div>
               )}
 
-              <div className="mt-2 flex items-center gap-2">
-                <p className="text-sm font-mono tracking-[2px] text-fg-subtle">
+              <div className="mt-2 flex min-h-8 flex-wrap items-start gap-2">
+                <p className="min-w-0 flex-1 text-[13px] font-mono tracking-[0.08em] leading-snug text-fg-subtle">
                   {isZh ? tier.badgeZh : tier.badge}
                 </p>
-                <span className="px-2 py-0.5 rounded-full bg-cyan-400/15 text-cyan-400 text-[10px] font-mono tracking-[2px] uppercase">
+                <span className="shrink-0 rounded-full bg-cyan-400/15 px-2 py-1 text-[10px] font-mono uppercase leading-none tracking-[0.12em] text-cyan-400">
                   {t.preorderTag}
                 </span>
               </div>
               <h3 className="text-2xl font-bold text-fg mt-2">{isZh ? tier.nameZh : tier.name}</h3>
               <div className="mt-4 flex items-end gap-2">
+                {t.pricePrefix && (
+                  <span className="pb-1 text-sm font-semibold uppercase tracking-[0.14em] text-fg-subtle">
+                    {t.pricePrefix}
+                  </span>
+                )}
                 <span
-                  className={`text-4xl font-extrabold ${
+                  className={`text-3xl lg:text-4xl font-extrabold ${
                     tier.popular
                       ? "text-cyan-400"
                       : "text-cyan-400"
@@ -230,6 +274,11 @@ export default function PricingSection() {
                 >
                   {getPreorderPrice(tier)}
                 </span>
+                {t.priceSuffix && (
+                  <span className="whitespace-nowrap pb-1 text-sm font-semibold text-cyan-400">
+                    {t.priceSuffix}
+                  </span>
+                )}
               </div>
               {getListPrice(tier) !== getPreorderPrice(tier) && (
                 <div className="mt-1 flex items-center gap-2 text-xs">
@@ -245,14 +294,14 @@ export default function PricingSection() {
               </p>
 
               <div className="mt-5 flex justify-center">
-                <div className="relative flex h-[320px] w-full items-center justify-center rounded-lg bg-canvas/25 p-4 md:h-[340px]">
+                <div className="relative flex h-[300px] w-full items-center justify-center overflow-hidden rounded-lg bg-canvas/25 p-4 md:h-[320px] xl:h-[300px]">
                   <Image
                     src={tier.imageSrc}
                     alt={isZh ? tier.imageAltZh : tier.imageAlt}
                     width={960}
                     height={720}
-                    sizes="(max-width: 768px) 90vw, (max-width: 1280px) 30vw, 420px"
-                    className="h-full w-full rounded-lg object-contain drop-shadow-[0_22px_36px_rgba(0,0,0,0.45)]"
+                    sizes="(max-width: 768px) 90vw, (max-width: 1280px) 45vw, 280px"
+                    className={`h-full w-full rounded-lg object-contain drop-shadow-[0_22px_36px_rgba(0,0,0,0.45)] ${tier.imageClassName ?? ""}`}
                   />
                 </div>
               </div>

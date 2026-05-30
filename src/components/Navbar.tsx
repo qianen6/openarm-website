@@ -78,19 +78,19 @@ export default function Navbar() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="fixed top-4 left-0 right-0 z-50 px-3 md:px-6"
+      className="fixed top-2 left-0 right-0 z-50 px-3 md:px-6"
     >
       <div
-        className={`max-w-7xl mx-auto px-5 lg:px-7 flex items-center justify-between h-16 rounded-full border transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${
+        className={`max-w-7xl mx-auto px-5 lg:px-7 flex items-center justify-between h-14 md:h-[60px] rounded-full border transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${
           scrolled
-            ? "bg-canvas/80 backdrop-blur-2xl border-line shadow-[0_20px_60px_rgba(0,0,0,0.36)]"
-            : "bg-canvas/50 backdrop-blur-xl border-line"
+            ? "bg-[#f3eee5]/88 backdrop-blur-2xl border-[#cfc6b8]/80 shadow-[0_20px_60px_rgba(41,34,24,0.18)]"
+            : "bg-[#f3eee5]/72 backdrop-blur-xl border-[#d9d0c2]/70 shadow-[0_14px_44px_rgba(41,34,24,0.12)]"
         }`}
       >
         <a href="#" className="flex items-center gap-3" aria-label="Mobile OpenArm X1 home">
-          <span className="text-fg font-bold text-xl tracking-tight">OpenArm</span>
-          <span className="text-fg-subtle text-sm">×</span>
-          <span className="px-3.5 py-1.5 rounded-full border border-cyan-300/30 text-cyan-300 text-sm font-semibold tracking-[0.08em]">
+          <span className="text-[#151a17] font-bold text-xl tracking-tight">OpenArm</span>
+          <span className="text-[#6a716b] text-sm">×</span>
+          <span className="px-3.5 py-1.5 rounded-full border border-cyan-400/35 bg-cyan-300/10 text-cyan-400 text-sm font-semibold tracking-[0.08em]">
             {t.brandBadge}
           </span>
         </a>
@@ -100,7 +100,7 @@ export default function Navbar() {
             <a
               key={link.label}
               href={link.href}
-              className="text-fg-subtle hover:text-fg transition-colors text-base"
+              className="text-[#48524d] hover:text-cyan-400 transition-colors text-base font-medium"
             >
               {link.label}
             </a>
@@ -112,17 +112,17 @@ export default function Navbar() {
             type="button"
             onClick={toggleLanguage}
             aria-label={t.toggleLabel}
-            className="px-4 py-2 rounded-lg border border-line bg-[rgba(228,224,216,0.04)] text-fg font-semibold text-base hover:border-cyan-400/40 transition-colors"
+            className="px-4 py-2 rounded-lg border border-[#cfc6b8]/90 bg-[#f8f3ea]/80 text-[#171a18] font-semibold text-base hover:border-cyan-400/55 hover:bg-[#fbf7ef] hover:text-cyan-400 transition-colors"
           >
             {t.toggleText}
           </button>
           <button
             type="button"
             onClick={openPreorder}
-            className="primary-cyan-gradient group inline-flex items-center gap-2 px-5 py-2 rounded-full text-canvas font-semibold text-sm transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.98]"
+            className="primary-cyan-gradient group inline-flex items-center gap-2 px-5 py-2 rounded-full font-semibold text-sm transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.98]"
           >
             <span>{t.contact}</span>
-            <span className="inline-flex w-6 h-6 items-center justify-center rounded-full bg-canvas/15 transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-[1px]">
+            <span className="inline-flex w-6 h-6 items-center justify-center rounded-full bg-[#06221f]/10 transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-[1px]">
               →
             </span>
           </button>
@@ -179,7 +179,7 @@ export default function Navbar() {
                         ?.scrollIntoView({ behavior: "smooth", block: "start" });
                     }, 80);
                   }}
-                  className="text-fg-subtle hover:text-fg text-lg py-2"
+                  className="text-[#48524d] hover:text-cyan-400 text-lg py-2 font-medium"
                 >
                   {link.label}
                 </a>
@@ -195,7 +195,7 @@ export default function Navbar() {
                       ?.scrollIntoView({ behavior: "smooth", block: "start" });
                   }, 80);
                 }}
-                className="px-6 py-3 rounded-lg border border-line bg-[rgba(228,224,216,0.04)] text-fg font-semibold text-center"
+                className="px-6 py-3 rounded-lg border border-[#cfc6b8]/90 bg-[#f8f3ea]/80 text-[#171a18] font-semibold text-center hover:border-cyan-400/55 hover:text-cyan-400 transition-colors"
               >
                 {t.channelsCta}
               </a>
@@ -205,7 +205,7 @@ export default function Navbar() {
                   setMenuOpen(false);
                   openPreorder();
                 }}
-                className="primary-cyan-gradient mt-2 px-6 py-3 rounded-lg text-canvas font-semibold text-center"
+                className="primary-cyan-gradient mt-2 px-6 py-3 rounded-lg font-semibold text-center"
               >
                 {t.contact}
               </button>
@@ -216,7 +216,7 @@ export default function Navbar() {
                   setMenuOpen(false);
                 }}
                 aria-label={t.toggleLabel}
-                className="px-6 py-3 rounded-lg border border-line bg-[rgba(228,224,216,0.04)] text-fg font-semibold text-center"
+                className="px-6 py-3 rounded-lg border border-[#cfc6b8]/90 bg-[#f8f3ea]/80 text-[#171a18] font-semibold text-center hover:border-cyan-400/55 hover:text-cyan-400 transition-colors"
               >
                 {t.toggleText}
               </button>

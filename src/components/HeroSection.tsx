@@ -25,8 +25,8 @@ const copy = {
 };
 
 const heroVideo = {
-  src: withBasePath("/videos/research-box-demo.mp4"),
-  poster: withBasePath("/videos/research-box-demo.jpg"),
+  src: withBasePath("/videos/65691b4a635d38d33710943577e84dec.mp4"),
+  poster: withBasePath("/videos/65691b4a635d38d33710943577e84dec.jpg"),
 };
 
 export default function HeroSection() {
@@ -52,13 +52,13 @@ export default function HeroSection() {
           alt={t.imageAlt}
           fill
           sizes="100vw"
-          className="hero-media-tone absolute inset-0 object-cover object-[50%_center]"
+          className="hero-media-tone hero-media-framing absolute inset-0 object-cover object-[50%_center]"
           priority
         />
       ) : (
         <video
           aria-hidden="true"
-          className="hero-media-tone absolute inset-0 h-full w-full object-cover object-[50%_center]"
+          className="hero-media-tone hero-media-framing absolute inset-0 h-full w-full object-cover object-[50%_center]"
           autoPlay
           loop
           muted
@@ -98,7 +98,7 @@ export default function HeroSection() {
 
             <motion.p
               {...fadeIn(0.5)}
-              className="mt-5 max-w-xl whitespace-pre-line text-[17px] md:text-[19px] font-[450] text-[#d1c8bb] leading-[1.65]"
+              className="mt-5 max-w-xl whitespace-pre-line text-[17px] md:text-[19px] font-[450] text-[#eee6d8] leading-[1.65] drop-shadow-[0_2px_14px_rgba(0,0,0,0.46)]"
             >
               {t.subtitle}
             </motion.p>
