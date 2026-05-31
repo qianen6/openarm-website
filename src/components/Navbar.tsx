@@ -95,7 +95,7 @@ export default function Navbar() {
           </span>
         </a>
 
-        <div className="hidden md:flex items-center gap-10">
+        <div className="hidden lg:flex items-center gap-10">
           {t.links.map((link) => (
             <a
               key={link.label}
@@ -107,7 +107,7 @@ export default function Navbar() {
           ))}
         </div>
 
-        <div className="hidden md:flex items-center gap-3">
+        <div className="hidden lg:flex items-center gap-3">
           <button
             type="button"
             onClick={toggleLanguage}
@@ -131,7 +131,7 @@ export default function Navbar() {
         <button
           type="button"
           onClick={() => setMenuOpen((v) => !v)}
-          className="md:hidden text-fg p-3 -mr-2 touch-manipulation"
+          className="lg:hidden text-fg p-3 -mr-2 touch-manipulation"
           aria-label={menuOpen ? t.menuClose : t.menuOpen}
           aria-expanded={menuOpen}
           aria-controls="mobile-nav-panel"
@@ -162,7 +162,7 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-canvas/95 backdrop-blur-xl border-b border-line/60"
+            className="lg:hidden bg-canvas/95 backdrop-blur-xl border-b border-line/60"
           >
             <div className="px-6 py-6 flex flex-col gap-4">
               {t.links.map((link) => (

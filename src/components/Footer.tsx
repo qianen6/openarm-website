@@ -70,7 +70,7 @@ const copy = {
   },
   zh: {
     brandBadge: "智谷原子",
-    description: "开源硬件 重新定义具身机器人",
+    description: "开源硬件 重新定义个人机器人 PR X1",
     copyright: "@2026 NVatom Open Source 保留所有权",
   },
 };

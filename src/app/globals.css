@@ -2,10 +2,10 @@
 
 @theme inline {
   /* Surface tokens — Warm Machine Intelligence system */
-  --color-canvas: #e8e3da;
-  --color-canvas-2: #d9d3c8;
-  --color-surface: #f6f1e7;
-  --color-surface-2: #d5cec2;
+  --color-canvas: #f2f2f2;
+  --color-canvas-2: #e7e7e7;
+  --color-surface: #ffffff;
+  --color-surface-2: #dedede;
 
   /* Foreground (text) tokens — 3 levels only */
   --color-fg: #171a18;
@@ -36,8 +36,8 @@
 
 body {
   background:
-    radial-gradient(ellipse at 78% -12%, rgba(8, 127, 121, 0.06), transparent 34rem),
-    linear-gradient(180deg, #eee8dd 0%, #e1dacd 100%);
+    radial-gradient(ellipse at 78% -12%, rgba(8, 127, 121, 0.04), transparent 34rem),
+    linear-gradient(180deg, #f2f2f2 0%, #e7e7e7 100%);
   color: var(--foreground);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
@@ -106,7 +106,7 @@ h4 {
 }
 
 .hero-bottom-fade {
-  background: linear-gradient(180deg, rgba(7, 8, 8, 0) 0%, rgba(7, 8, 8, 0.1) 40%, rgba(232, 227, 218, 0.86) 74%, #e8e3da 88%, #e8e3da 100%);
+  background: linear-gradient(180deg, rgba(7, 8, 8, 0) 0%, rgba(7, 8, 8, 0.1) 40%, rgba(242, 242, 242, 0.86) 74%, #f2f2f2 88%, #f2f2f2 100%);
 }
 
 .hero-atmosphere {

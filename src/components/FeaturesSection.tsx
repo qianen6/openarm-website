@@ -181,7 +181,7 @@ export default function FeaturesSection() {
   return (
     <section
       id="features"
-      className="relative bg-canvas py-24 overflow-hidden scroll-mt-28"
+      className="relative bg-canvas-2 py-24 overflow-hidden scroll-mt-28"
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-20">
         <motion.div

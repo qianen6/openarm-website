@@ -31,48 +31,14 @@ interface Tier {
 
 const tiers: readonly Tier[] = [
   {
-    name: "OpenArm Upper Body",
-    nameZh: "OpenArm 上半身",
-    badge: "Upper Body",
-    badgeZh: "上半身套件",
-    preorderPriceUsd: "$3,600",
-    listPriceUsd: "$3,600",
-    preorderPriceCny: "¥26,000",
-    listPriceCny: "¥26,000",
-    target: "An upper-body OpenArm platform for desktop teaching, entry-level embodied AI experiments, and low-cost manipulation data collection.",
-    targetZh:
-      "仅包含 OpenArm 上半身结构，适合桌面教学、入门具身智能实验与低成本操作数据采集。",
-    features: [
-      "Upper-body OpenArm kit",
-      "Dual-arm manipulation platform",
-      "Desktop or lab mounting",
-      "Open documentation and SDK",
-      "Entry-level data collection workflows",
-    ],
-    featuresZh: [
-      "OpenArm 上半身套件",
-      "双臂操作平台",
-      "适合桌面或实验室固定部署",
-      "开放文档与 SDK 支持",
-      "适合入门数据采集流程",
-    ],
-    cta: "Early Bird Inquiry",
-    ctaZh: "早鸟价预定咨询",
-    popular: false,
-    imageSrc: withBasePath("/images/wowrobo-openarm-2-94352134e53e4116971d617a8ddb56fa.png"),
-    imageAlt: "OpenArm upper-body robot rendering",
-    imageAltZh: "OpenArm 上半身机器人渲染图",
-    imageClassName: "scale-[1.35]",
-  },
-  {
     name: "M-OpenArm Edu",
     nameZh: "M-OpenArm Edu",
     badge: "Education",
     badgeZh: "教育基础版",
-    preorderPriceUsd: "$9,600",
-    listPriceUsd: "$9,600",
-    preorderPriceCny: "¥69,000",
-    listPriceCny: "¥69,000",
+    preorderPriceUsd: "$4,100",
+    listPriceUsd: "$4,100",
+    preorderPriceCny: "¥29,800",
+    listPriceCny: "¥29,800",
     target: "Designed for school teaching and geek beginners, it comes with standard open-source courses, serving as a lightweight starting point for embodied AI teaching and research.",
     targetZh: "高校教学与极客入门，配备标准开源课程，是具身智能教研的轻量化起点",
     features: [
@@ -167,7 +133,7 @@ const sectionCopy = {
     eyebrow: "PRE-ORDER PRICING",
     title: "NVatom x OpenArm x ROS Education Foundation",
     description:
-      "Our embodied AI robots are co-developed in partnership with OpenArm. Users can choose from four solution tiers based on their deployment needs and refer to the official documentation to complete the software and hardware integration.",
+      "Our embodied AI robots are co-developed in partnership with OpenArm. Users can choose from three solution tiers based on their deployment needs and refer to the official documentation to complete the software and hardware integration.",
     popular: "MOST POPULAR",
     preorderTag: "PRE-SALE",
     listLabel: "List price",
@@ -178,7 +144,7 @@ const sectionCopy = {
     eyebrow: "预售价格",
     title: "智谷原子 X OpenArm X ROS教育基金会 联手共建",
     description:
-      "我们的具身智能机器人与 OpenArm 联名共建。用户可以按部署需求选择四档方案，并参考官方文档完成软硬件对接。",
+      "我们的具身智能机器人与 OpenArm 联名共建。用户可以按部署需求选择三档方案，并参考官方文档完成软硬件对接。",
     popular: "最受欢迎",
     preorderTag: "预售",
     listLabel: "原价",
@@ -198,7 +164,7 @@ export default function PricingSection() {
     isZh ? tier.listPriceCny : tier.listPriceUsd;
 
   return (
-    <section id="pricing" className="relative bg-canvas py-24 overflow-hidden scroll-mt-28">
+    <section id="pricing" className="relative bg-canvas-2 py-24 overflow-hidden scroll-mt-28">
       <div className="max-w-7xl mx-auto px-6 lg:px-20">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -218,7 +184,7 @@ export default function PricingSection() {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6 items-start">
+        <div className="mx-auto grid max-w-6xl md:grid-cols-2 xl:grid-cols-3 gap-6 items-start">
           {tiers.map((tier, i) => (
             <motion.div
               key={tier.name}

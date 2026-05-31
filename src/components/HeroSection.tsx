@@ -7,9 +7,9 @@ import { usePreorder } from "@/lib/preorder";
 
 const copy = {
   en: {
-    headline: "Personal Robot PR X1\nA Smart Family Member",
+    headline: "Personal Robot PR X1\nEmbrace A New Family Member",
     subtitle:
-      "Accelerating embodied AI robots into the home, leaving chores to technology and time to love.",
+      "Accelerating the embodied AI robots into families, and\nleaving the trivial to technology, and saving time for love.",
     primaryCta: "Pre-order Now",
     secondaryCta: "Product Details",
     imageAlt: "Mobile OpenArm X1 AMR robot platform",

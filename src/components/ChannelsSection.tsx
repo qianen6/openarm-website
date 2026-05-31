@@ -75,7 +75,7 @@ export default function ChannelsSection() {
   const isZh = language === "zh";
 
   return (
-    <section id="channels" className="relative bg-canvas-2 py-28 scroll-mt-24 overflow-hidden">
+    <section id="channels" className="relative bg-canvas py-28 scroll-mt-24 overflow-hidden">
       <div aria-hidden="true" className="absolute inset-0 opacity-40 pointer-events-none">
         <div className="warm-tech-field absolute inset-0" />
         <div className="warm-tech-line-field absolute left-[10%] top-[18%] h-px w-[72%] rotate-[3deg] opacity-45 blur-[16px]" />

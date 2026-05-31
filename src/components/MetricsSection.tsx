@@ -92,7 +92,7 @@ export default function MetricsSection() {
   const t = copy[language];
 
   return (
-    <section className="relative bg-gradient-to-b from-canvas via-canvas-2 to-canvas">
+    <section className="relative bg-canvas">
       <div className="max-w-7xl mx-auto px-6 lg:px-20 py-16">
         <motion.p
           initial={{ opacity: 0 }}
